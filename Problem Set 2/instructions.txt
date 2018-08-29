@@ -1,0 +1,12 @@
+Using keras, write seperate neural networks that:
+
+-Classify the data shown in the MNIST data
+-Classify the kind of clothing item (pant, shirt, etc.) shown in the Fashion MNISt dataset
+-Classify the breast cancer measurements as benign of malignant
+
+Notes:
+Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
+Each folder includes the original data, and my processing code (which contains the original data source)
+Make sure you're using the processed data (single data and label pair of .csv files, with camelCase names)
+If you can find a meaningful bug in the data processing code, some sort of extra credit will be awarded
+Make sure you split the data into testing and training sets in your code
