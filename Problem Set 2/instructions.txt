@@ -26,6 +26,7 @@ Notes:
 -The code you give us should be a formality, everything should be in laid out in the pdf or clearly explained in Jupyter notebook (in English and without a bunch of extra outputs)
 -If you're on the fence about Python+pdf vs a jupyter notebook, please use Python+pdf (it's easier for us to grade)
 -Please include seperate .pdf, .py, or jupyter files for each model
--Making submissions faster to grade is better for both of us (please don't be unnescesarily verbose); 6 total pages of pdfs (with /large/ figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
+-Making submissions faster to grade is better for both of us (please don't be unnescesarily verbose)
+  -6 total pages of pdfs (with /large/ figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
 -Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
 -You're allowed to do some models in Jupyter and some in .py+.pdf, but please don't. Making things easier for the TAs is better for you to.
