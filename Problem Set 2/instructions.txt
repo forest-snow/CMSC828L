@@ -22,7 +22,7 @@ Notes:
 -Make sure you're using the processed data (single data and label pair of .csv files, with camelCase names)
 -If you can find a meaningful bug in the data processing code, some sort of extra credit will be awarded
 -Make sure you split the data into testing and training sets in your code
--You must you Python 3.5 or greater
+-You must use Python 3.5 or greater
 -The code you give us should be a formality, everything should be in laid out in the pdf or clearly explained in Jupyter notebook (in English and without a bunch of extra outputs)
 -If you're on the fence about Python+pdf vs a jupyter notebook, please use Python+pdf (it's easier for us to grade)
 -Please include seperate .pdf, .py, or jupyter files for each model
