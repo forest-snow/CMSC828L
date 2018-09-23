@@ -14,7 +14,7 @@ Your things must include for each model:
 -Examples of datapoints that fail in your models
 -An explanation of why what you've included for all those things make sense
 -An explanation of how/why your network's shape and layer choices, your loss function, and your activation function are correct
--Anything else you did that would convince us you know what you're doing
+-Anything else you did that would convince us that you know what you're doing
 
 Notes:
 -Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
