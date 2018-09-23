@@ -30,3 +30,4 @@ Notes:
   -6 total pages of pdfs (with /large/ figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
 -Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
 -You're allowed to do some models in Jupyter and some in .py+.pdf, but please don't. Making things easier for the TAs is better for you to.
+-The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
