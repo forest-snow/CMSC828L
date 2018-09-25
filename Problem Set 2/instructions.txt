@@ -26,7 +26,7 @@ matplotlib
 SK-Learn (preprocessing tools only)
 seaborn (wrapper for matplotlib that makes it not-terrible to use and easier to read/grade- I encourage you to use it)
 Packages used in creating the datasets
-Other PyData ecosystem tools may be added upon request with a good reason, misc tools (i.e. a custom progress bar tool) will not be allowed for the sanity of the TAs.
+Other PyData ecosystem tools may be added upon request with a good reason, misc tools (i.e. a custom progress bar package) will not be allowed for the sanity of the TAs.
 
 Notes:
 -Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
