@@ -23,10 +23,10 @@ Tensorflow
 NumPy
 SciPy
 matplotlib
-Pandas (you should only use this for preprocessing on the breast cancer task)
 SK-Learn (preprocessing tools only)
 seaborn (wrapper for matplotlib that makes it not-terrible to use and easier to read/grade- I encourage you to use it)
-
+Packages used in creating the datasets
+Other PyData ecosystem tools may be added upon request with a good reason, misc tools (i.e. a custom progress bar tool) will not be allowed for the sanity of the TAs.
 
 Notes:
 -Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
@@ -44,3 +44,4 @@ Notes:
 -You're allowed to do some models in Jupyter and some in .py+.pdf, but please don't. Making things easier for the TAs is better for you to.
 -The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
 -That's also the best way to get weird Linux problems answered (ask Chen about weird macOS problems)
+-All computation/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something wierd.
