@@ -7,7 +7,7 @@ Using keras, write seperate neural networks that:
 -Have reasonable hyperparameters
 
 You will submit:
-A .py file and .pdf, or a jupyter notebook (/using the most recent version of jupyter/). 
+3 .py files and .pdf, or 3 jupyter notebook files (/using the most recent version of jupyter/). 
 
 Your things must include for each model:
 -Training and testing accuracy vs epoch plots
