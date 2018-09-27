@@ -72,18 +72,20 @@
 
 * Making submissions faster to grade is better for both of us (please don't be unnescesarily verbose)
 
-  * 6 total pages of pdfs (with /large/ figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
+  * 6 total pages of pdfs (with *large* figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
   
 * Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
 
 * You're allowed to do some models in Jupyter and some in .py+.pdf, but please don't. Making things easier for the TAs is better for you to.
 
--The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
--That's also the best way to get weird Linux problems answered (ask Chen about weird macOS problems)
--All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
--If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow" won't work/install right), we can't help you. 
-  -None of these tools were designed for Windows and using Windows with them a terrible idea. Even Microsoft's data science and ML people generally don't anymore.
-  -Please use Linux, I can show you the basics during office hours.
+* The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
+
+* That's also the best way to get weird Linux problems answered (ask Chen about weird macOS problems)
+
+* All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
+* If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow" won't work/install right), we can't help you. 
+  * None of these tools were designed for Windows and using Windows with them a terrible idea. Even Microsoft's data science and ML people generally don't anymore.
+  * Please dual boot Linux, I can show you the basics during office hours if needed
 -You must start with the datasets as included from this repo, using the processed forms provided in the git repo. When your code is run during grading, this is all that will be available. 
   -This is for ease of grading, and for ease of the beginners
 -You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
