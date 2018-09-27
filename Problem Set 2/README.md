@@ -93,8 +93,6 @@
   * Please dual boot Linux, I can show you the basics during office hours if needed
   
 * You must start with the datasets as included from this repo, using the processed forms provided in the git repo; when your code is run during grading, this is all that will be available
-
-  * This is for ease of grading, and for ease of the beginners
   
 * You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
 
