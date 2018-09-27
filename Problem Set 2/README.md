@@ -71,7 +71,7 @@
 * If you're on the fence about Python+pdf vs a jupyter notebook, please use Python+pdf (it's easier for us to grade)
 -Please include seperate .pdf, .py, or jupyter files for each model
 
-* Making submissions faster to grade is better for both of us (please don't be unnescesarily verbose)
+* Making submissions shorter faster/easier to grade is better for both of us (please don't be unnescesarily verbose)
 
   * 6 total pages of pdfs (with *large* figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
   
