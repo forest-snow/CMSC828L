@@ -56,7 +56,9 @@
 
 # Notes
 
-* Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
+* Make sure to scale your data from 0 to 1 and convert it to float32 before using it
+
+  * You must use single precision for all computations for this task
 
 * Each folder includes the original data, and my processing code (which contains the original data source)
 
@@ -101,9 +103,5 @@
 * You aren't allowed to do data augmentation, or to pad the data (or do anything similar to that)
 
 * If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that when we run your code *without* having to rerun that portion, that portion won't run by default (but is trivial to enable if needed)
-
-* You'll have to convert the provided numpy arrays to float32
-
-  * You must use single precision for all computations for this task
   
 * Your code can't use more than 6GB of ram
