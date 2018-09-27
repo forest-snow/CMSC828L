@@ -1,4 +1,4 @@
-# Using keras, write seperate neural networks that:
+# Using keras, write seperate neural networks that
 
 * Classify the data shown in the MNIST data
 
