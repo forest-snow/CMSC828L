@@ -102,7 +102,7 @@
 
 * You aren't allowed to do data augmentation, or to pad the data (or do anything similar to that)
 
-* If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that we can easily run your code *without* having to rerun that portion
+* If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that when we run your code *without* having to rerun that portion, that portion won't run by default (but is trivial to enable if needed)
 
 * You'll have to convert the provided numpy arrays to float32
 
