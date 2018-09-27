@@ -1,4 +1,4 @@
-Using keras, write seperate neural networks that:
+# Using keras, write seperate neural networks that:
 
 -Classify the data shown in the MNIST data
 
@@ -10,11 +10,11 @@ Using keras, write seperate neural networks that:
 
 -Have reasonable hyperparameters
 
-You will submit:
+# You will submit
 3 .py files and .pdf, or 3 jupyter notebook files (/using the most recent version of jupyter/)
 Each much be submitted to the correct assignment for each dataset on ELMNS
 
-Your things must include for each model:
+# Your submission for each model must include
 -Training and testing accuracy vs epoch plots
 -Some sort of reasonable print outs representative of the weight and biases (/not the entire things/)
 -Examples of datapoints that fail in your models
@@ -22,7 +22,7 @@ Your things must include for each model:
 -An explanation of how/why your network's shape and layer choices, your loss function, and your activation function are correct
 -Anything else you did that would convince us that you know what you're doing
 
-Allowed dependencies:
+# Allowed dependencies
 Keras (must use TensorFlow backend- this will impact your data for CNNS)
 Tensorflow
 NumPy
