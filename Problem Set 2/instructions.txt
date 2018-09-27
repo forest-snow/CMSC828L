@@ -55,4 +55,4 @@ Notes:
 -If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that we can easily run your code /without/ having to rerun that
 -You'll have to convert the provided numpy arrays to float32
   -You must use single precision for all computations for this task
--Your code can't use more than 4GB of ram
+-Your code can't use more than 6GB of ram
