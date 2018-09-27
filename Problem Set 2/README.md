@@ -32,7 +32,8 @@
 
 # Allowed dependencies
 
-* Keras (must use TensorFlow backend- this will impact your data for CNNS)
+* Keras 
+ * (must use TensorFlow backend- this will impact your data shape for CNNS)
 
 * Tensorflow
 
@@ -42,7 +43,8 @@
 
 * matplotlib
 
-* SK-Learn (you can only use the preprocessing tools)
+* SK-Learn 
+ * (you can only use the preprocessing tools)
 
 * seaborn 
   * (wrapper for matplotlib that makes it not-terrible to use and easier to read/grade- I encourage you to use it)
@@ -53,28 +55,29 @@
 
 # Notes
 
--Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
+* Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
 
--Each folder includes the original data, and my processing code (which contains the original data source)
+* Each folder includes the original data, and my processing code (which contains the original data source)
 
--If you can find a meaningful bug in the data processing code, some sort of extra credit will be awarded
+* If you can find a meaningful bug in the data processing code, some sort of extra credit will be awarded
 
--Make sure you split the data into testing and training sets in your code
+* Make sure you split the data into testing and training sets in your code
 
--You must use Python 3.5 or greater
+* You must use Python 3.5 or greater
 
--The code you give us should be a formality, everything should be laid out in the pdf or clearly explained in Jupyter notebook (in English and without a bunch of extra outputs)
+* The code you give us should be a formality, everything should be laid out in the pdf or clearly explained in Jupyter notebook (in English and without a bunch of extra outputs)
 
--If you're on the fence about Python+pdf vs a jupyter notebook, please use Python+pdf (it's easier for us to grade)
+* If you're on the fence about Python+pdf vs a jupyter notebook, please use Python+pdf (it's easier for us to grade)
 -Please include seperate .pdf, .py, or jupyter files for each model
 
--Making submissions faster to grade is better for both of us (please don't be unnescesarily verbose)
+* Making submissions faster to grade is better for both of us (please don't be unnescesarily verbose)
 
-  -6 total pages of pdfs (with /large/ figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
+  * 6 total pages of pdfs (with /large/ figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
   
--Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
+* Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
 
--You're allowed to do some models in Jupyter and some in .py+.pdf, but please don't. Making things easier for the TAs is better for you to.
+* You're allowed to do some models in Jupyter and some in .py+.pdf, but please don't. Making things easier for the TAs is better for you to.
+
 -The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
 -That's also the best way to get weird Linux problems answered (ask Chen about weird macOS problems)
 -All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
