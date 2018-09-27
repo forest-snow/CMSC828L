@@ -33,7 +33,7 @@
 # Allowed dependencies
 
 * Keras 
-  * (must use TensorFlow backend- this will impact your data shape for CNNS)
+  * You must use TensorFlow backend; this will impact your data shape for CNNS
 
 * Tensorflow
 
@@ -44,10 +44,11 @@
 * matplotlib
 
 * SK-Learn 
-  * (you can only use the preprocessing tools)
+  * You can only use the preprocessing tools
 
 * seaborn 
-  * (wrapper for matplotlib that makes it not-terrible to use and easier to read/grade- I encourage you to use it)
+
+  * Wrapper for matplotlib that makes it not-terrible to use and easier to read/grade, I encourage you to use it
 
 * Other PyData ecosystem tools may be added upon request with a good reason, misc tools (i.e. a custom progress bar package) will not be allowed for the sanity of the TAs.
 
