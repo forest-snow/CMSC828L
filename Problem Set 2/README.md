@@ -80,7 +80,7 @@
   
 * Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
 
-* You're allowed to do some models in Jupyter and some in .py+.pdf, but please don't. Making things easier for the TAs is better for you to.
+* You're allowed to do some models in Jupyter and some in .py+.pdf, but please don'; making things easier for the TAs is better for you too
 
 * The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
 
