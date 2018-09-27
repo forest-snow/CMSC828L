@@ -53,3 +53,5 @@ Notes:
 -You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
 -You aren't allowed to do data augmentation, or to pad the data (or create similar transformations)
 -If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that we can easily run your code /without/ having to rerun that
+-You'll have to convert the provided numpy arrays to float32
+  -You must use single precision for all computations for this task
