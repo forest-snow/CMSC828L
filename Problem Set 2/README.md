@@ -1,3 +1,5 @@
+# Due October 9th
+
 # Using keras, write seperate neural networks that
 
 * Classify the data shown in the MNIST data
