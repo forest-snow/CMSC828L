@@ -48,8 +48,8 @@ Notes:
 -If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow" won't work/install right), we can't help you. 
   -None of these tools were designed for Windows and using Windows with them a terrible idea. Even Microsoft's data science and ML people generally don't anymore.
   -Please use Linux, I can show you the basics during office hours.
--You must start with the datasets as included from this repo. When your code is run, this is all that will be available. 
-  -This is for ease of grading, and because I've made a small change to MNIST that will make it harder, and make using premade architectures more difficult
+-You must start with the datasets as included from this repo, using the processed forms provided in the git repo. When your code is run during grading, this is all that will be available. 
+  -This is for ease of grading, and for ease of the beginners
 -You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
 -You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
 -You aren't allowed to do data augmentation, or to pad the data (or create similar transformations)
