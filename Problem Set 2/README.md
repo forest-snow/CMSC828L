@@ -12,14 +12,20 @@
 
 # You will submit
 3 .py files and .pdf, or 3 jupyter notebook files (/using the most recent version of jupyter/)
+
 Each much be submitted to the correct assignment for each dataset on ELMNS
 
 # Your submission for each model must include
 -Training and testing accuracy vs epoch plots
+
 -Some sort of reasonable print outs representative of the weight and biases (/not the entire things/)
+
 -Examples of datapoints that fail in your models
+
 -An explanation of why what you've included for all those things make sense
+
 -An explanation of how/why your network's shape and layer choices, your loss function, and your activation function are correct
+
 -Anything else you did that would convince us that you know what you're doing
 
 # Allowed dependencies
