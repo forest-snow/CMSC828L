@@ -33,7 +33,8 @@
 # Allowed dependencies
 
 * Keras 
-  * You must use TensorFlow backend; this will impact your data shape for CNNS
+
+  * You must use TensorFlow as your backend; this will impact your data shape for CNNS
 
 * Tensorflow
 
