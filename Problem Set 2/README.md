@@ -11,11 +11,13 @@
 -Have reasonable hyperparameters
 
 # You will submit
+
 3 .py files and .pdf, or 3 jupyter notebook files (/using the most recent version of jupyter/)
 
 Each much be submitted to the correct assignment for each dataset on ELMNS
 
 # Your submission for each model must include
+
 -Training and testing accuracy vs epoch plots
 
 -Some sort of reasonable print outs representative of the weight and biases (/not the entire things/)
@@ -29,6 +31,7 @@ Each much be submitted to the correct assignment for each dataset on ELMNS
 -Anything else you did that would convince us that you know what you're doing
 
 # Allowed dependencies
+
 Keras (must use TensorFlow backend- this will impact your data for CNNS)
 
 Tensorflow
@@ -47,7 +50,8 @@ Other PyData ecosystem tools may be added upon request with a good reason, misc 
 
 You may /not/ depend on python-mnist (used in some of the preprocessing scripts)
 
-#Notes
+# Notes
+
 -Make sure to scale your data from 0 to 1 before using it (the labels are, but the other data isn't)
 
 -Each folder includes the original data, and my processing code (which contains the original data source)
