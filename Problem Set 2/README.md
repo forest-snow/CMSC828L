@@ -16,7 +16,7 @@
 
 * Each much be submitted to the correct assignment for each dataset on ELMNS
 
-# Your submission for each model must include
+# Your submission for each data set must include
 
 * Training and testing accuracy vs epoch plots
 
