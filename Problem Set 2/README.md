@@ -86,13 +86,13 @@
 
 * All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
 
-* If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow won't work/install right"), we can't help you. 
+* If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow won't work/install right"), we can't help you
 
-  * None of these tools were designed for Windows and using Windows with them a terrible idea. Even Microsoft's data science and ML people generally don't anymore.
+  * None of these tools were designed for Windows and using Windows with them a terrible idea; even Microsoft's data science and ML people generally don't anymore
   
   * Please dual boot Linux, I can show you the basics during office hours if needed
   
-* You must start with the datasets as included from this repo, using the processed forms provided in the git repo. When your code is run during grading, this is all that will be available. 
+* You must start with the datasets as included from this repo, using the processed forms provided in the git repo; when your code is run during grading, this is all that will be available
 
   * This is for ease of grading, and for ease of the beginners
   
