@@ -83,15 +83,27 @@
 * That's also the best way to get weird Linux problems answered (ask Chen about weird macOS problems)
 
 * All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
+
 * If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow" won't work/install right), we can't help you. 
+
   * None of these tools were designed for Windows and using Windows with them a terrible idea. Even Microsoft's data science and ML people generally don't anymore.
+  
   * Please dual boot Linux, I can show you the basics during office hours if needed
--You must start with the datasets as included from this repo, using the processed forms provided in the git repo. When your code is run during grading, this is all that will be available. 
-  -This is for ease of grading, and for ease of the beginners
--You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
--You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
--You aren't allowed to do data augmentation, or to pad the data (or anything similar to that)
--If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that we can easily run your code /without/ having to rerun that
--You'll have to convert the provided numpy arrays to float32
-  -You must use single precision for all computations for this task
--Your code can't use more than 6GB of ram
+  
+* You must start with the datasets as included from this repo, using the processed forms provided in the git repo. When your code is run during grading, this is all that will be available. 
+
+  * This is for ease of grading, and for ease of the beginners
+  
+* You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
+
+* You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
+
+* You aren't allowed to do data augmentation, or to pad the data (or anything similar to that)
+
+* If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that we can easily run your code *without* having to rerun that portion
+
+* You'll have to convert the provided numpy arrays to float32
+
+  * You must use single precision for all computations for this task
+  
+* Your code can't use more than 6GB of ram
