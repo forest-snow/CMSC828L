@@ -52,3 +52,4 @@ Notes:
   -This is for ease of grading, and because I've made a small change to MNIST that will make it harder, and make using premade architectures more difficult
 -You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
 -You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
+-You aren't allowed to do data augmentation
