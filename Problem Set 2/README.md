@@ -86,7 +86,7 @@
 
 * That's also the best way to get weird Linux problems answered 
 
-  * Ask Chen about weird macOS problems)
+  * Ask Chen about weird macOS problems
 
 * All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
 
