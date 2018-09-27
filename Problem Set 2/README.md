@@ -33,7 +33,7 @@
 # Allowed dependencies
 
 * Keras 
- * (must use TensorFlow backend- this will impact your data shape for CNNS)
+  * (must use TensorFlow backend- this will impact your data shape for CNNS)
 
 * Tensorflow
 
@@ -44,7 +44,7 @@
 * matplotlib
 
 * SK-Learn 
- * (you can only use the preprocessing tools)
+  * (you can only use the preprocessing tools)
 
 * seaborn 
   * (wrapper for matplotlib that makes it not-terrible to use and easier to read/grade- I encourage you to use it)
