@@ -1,9 +1,13 @@
 Using keras, write seperate neural networks that:
 
 -Classify the data shown in the MNIST data
+
 -Classify the kind of clothing item (pant, shirt, etc.) shown in the Fashion MNISt dataset
+
 -Classify the breast cancer measurements as benign or malignant
+
 -Do this using the best practices discussed in class (i.e. one hot encoding, ReLU, CNNS when you should, etc.)
+
 -Have reasonable hyperparameters
 
 You will submit:
