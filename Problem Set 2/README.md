@@ -95,7 +95,7 @@
   
   * Please dual boot Linux, I can show you the basics during office hours if needed
   
-  * Yes macOS should be fine
+  * Yes, macOS should be fine
   
 * You must start with the datasets as included from this repo, using the processed forms provided in the git repo; when your code is run during grading, this is all that will be available
   
