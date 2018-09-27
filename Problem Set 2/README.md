@@ -84,6 +84,7 @@
 * The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
 
 * That's also the best way to get weird Linux problems answered 
+
   * Ask Chen about weird macOS problems)
 
 * All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
@@ -93,6 +94,8 @@
   * None of these tools were designed for Windows and using Windows with them a terrible idea; even Microsoft's data science and ML people generally don't anymore
   
   * Please dual boot Linux, I can show you the basics during office hours if needed
+  
+  * Yes macOS should be fine
   
 * You must start with the datasets as included from this repo, using the processed forms provided in the git repo; when your code is run during grading, this is all that will be available
   
