@@ -80,11 +80,12 @@
 
 * The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
 
-* That's also the best way to get weird Linux problems answered (ask Chen about weird macOS problems)
+* That's also the best way to get weird Linux problems answered 
+  * Ask Chen about weird macOS problems)
 
 * All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
 
-* If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow" won't work/install right), we can't help you. 
+* If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow won't work/install right"), we can't help you. 
 
   * None of these tools were designed for Windows and using Windows with them a terrible idea. Even Microsoft's data science and ML people generally don't anymore.
   
