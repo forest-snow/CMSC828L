@@ -111,3 +111,4 @@
 * If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that when we run your code *without* having to rerun that portion, that portion won't run by default (but is trivial to enable if needed)
   
 * Your code can't use more than 6GB of ram
+  * Please don't screw this one up in particular, it'll make grading a mess and will result in a major deduction in points
