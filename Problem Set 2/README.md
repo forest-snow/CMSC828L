@@ -112,3 +112,10 @@
   
 * Your code can't use more than 6GB of ram
   * Please don't screw this one up in particular, it'll make grading a mess and will result in a major deduction in points
+
+* The data processing files can not be caled by your cose
+
+* Your code can not save in files, or edit rhe files in any way
+  * Editing local files is tantamount to cheating
+
+* Any malicious pieces of code run during grading will be considered accademic dishonesty
