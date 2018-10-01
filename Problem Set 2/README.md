@@ -108,7 +108,7 @@
 
 * You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
 
-* You aren't allowed to do data augmentation, or to pad the data (or do anything similar to that)
+* You aren't allowed to do data augmentation, to pad the data, or do anything similar to those
 
 * If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that when we run your code *without* having to rerun that portion, that portion won't run by default (but is trivial to enable if needed)
   
