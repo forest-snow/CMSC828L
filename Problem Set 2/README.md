@@ -76,7 +76,7 @@
 * The code you give us should be a formality, everything should be laid out in the pdf or clearly explained in Jupyter notebook (in English and without a bunch of extra outputs)
 
 * If you're on the fence about Python+pdf vs a jupyter notebook, please use Python+pdf (it's easier for us to grade)
--Please include seperate .pdf, .py, or jupyter files for each model
+  * Please include seperate .pdf, .py, or jupyter files for each model
 
 * Making submissions shorter faster/easier to grade is better for both of us (please don't be unnescesarily verbose)
 
@@ -84,7 +84,7 @@
   
 * Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
 
-* You're allowed to do some models in Jupyter and some in .py+.pdf, but please don'; making things easier for the TAs is better for you too
+* You're allowed to do some models in Jupyter and some in .py+.pdf, but please dont; making things easier for the TAs is better for you too
 
 * The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
 
