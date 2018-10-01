@@ -23,6 +23,8 @@
 * Training and testing accuracy vs epoch plots
 
 * Some sort of reasonable print outs representative of the weight and biases (*not the entire things*)
+  * The goal of this is to ensure that, for example, all you weights are not 0 (or something akin to that), do what you feel makes sense
+  
 
 * Examples of datapoints that fail in your models
 
