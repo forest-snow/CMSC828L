@@ -42,6 +42,8 @@
 
 * Tensorflow
 
+* Tensorboard
+
 * NumPy
 
 * SciPy
