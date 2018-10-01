@@ -42,7 +42,7 @@
 
 * Tensorflow
 
-* Tensorboard
+* TensorBoard
 
 * NumPy
 
