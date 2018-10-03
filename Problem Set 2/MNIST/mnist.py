@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
+from matplotlib.lines import Line2D
 
 seed = 7
 np.random.seed(seed)
@@ -48,18 +49,31 @@ def plot_weights_biases(model):
     wb = []
     for i, matrix in enumerate(model.get_weights()):
         layer = int(i / 2) + 1
+        max_val = np.max(matrix)
+        min_val = np.min(matrix)
+        mean_val = np.mean(matrix)
         if i % 2:
-            val = np.max(matrix)
-            wb.append(('Bias '+str(layer), val))
+            wb.append(('Bias '+str(layer), max_val, 'c'))
+            wb.append(('Bias '+str(layer), min_val, 'y'))
+            wb.append(('Bias '+str(layer), mean_val, 'm'))
+
         else:
-            val = np.max(np.mean(matrix, axis=0))
-            wb.append(('Weight '+str(layer), val))
+            wb.append(('Weight '+str(layer), max_val, 'c'))
+            wb.append(('Weight '+str(layer), min_val, 'y'))
+            wb.append(('Weight '+str(layer), mean_val, 'm'))
+
     labels = [v[0] for v in wb]
     values = [v[1] for v in wb]
-    plt.scatter(labels, values)
+    colors = [v[2] for v in wb]
+    plt.scatter(labels, values, c=colors)
 
     plt.title('Analyzing weights and biases')
-    plt.ylabel('Maximum value')
+    plt.ylabel('Values')
+    elements = \
+        [Line2D([0], [0], marker='o', color='c', label='Maximum'),
+        Line2D([0], [0], marker='o', color='y', label='Minimum'),
+        Line2D([0], [0], marker='o', color='m', label='Mean')]
+    plt.legend(handles=elements, loc='upper left')
     f.savefig('wb.png')
 
 def find_errors(model, x_test, y_test, limit=10):
@@ -76,7 +90,7 @@ def find_errors(model, x_test, y_test, limit=10):
 if __name__ == '__main__':
     x_train, y_train, x_test, y_test = load_data()
     model = build_model()
-    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=20, batch_size=2000, verbose=2)
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=1, batch_size=2000, verbose=2)
     plot_scores(history.history)
     plot_weights_biases(model)
     find_errors(model, x_test, y_test)
