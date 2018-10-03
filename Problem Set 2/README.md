@@ -123,3 +123,5 @@
   * Editing local files is tantamount to cheating
 
 * Any malicious pieces of code caused to be during grading will be considered accademic dishonesty
+
+* No mixing .py and jupyter for one dataset
