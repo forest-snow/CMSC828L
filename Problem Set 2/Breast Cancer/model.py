@@ -8,33 +8,36 @@ from keras.layers import Dropout
 from keras.layers import Flatten
 from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import MaxPooling2D
+from keras.layers.normalization import BatchNormalization
+from keras.utils import to_categorical
 from matplotlib.lines import Line2D
 
 seed = 7
 np.random.seed(seed)
-n_pixels=784
-n_classes=10 
+n_feat=9
+n_classes=2 
 
-def load_data():
-    x_train = np.load('trainImages.npy')
-    y_train = np.load('trainLabels.npy')
-    x_test = np.load('testImages.npy')
-    y_test = np.load('testLabels.npy')
-    # reshape
-    # x_train = x_train.reshape(x_train.shape[0], n_pixels).astype('float32')
-    # x_test = x_test.reshape(x_test.shape[0], n_pixels).astype('float32')
-    x_train = x_train.reshape(x_train.shape[0], 28, 28, 1).astype('float32')
-    x_test = x_test.reshape(x_test.shape[0], 28, 28, 1).astype('float32')
+def load_data(split=0.15):
+    x = np.loadtxt('breastCancerData.csv', delimiter=',')
+    y = np.loadtxt('breastCancerLabels.csv')
+    y = to_categorical(y)
 
-    # normalize
-    x_train = x_train/255.0
-    x_test = x_test/255.0
+
+    size = x.shape[0]
+    test = int(split*size)
+    ind = np.random.permutation(size)
+    train_ind = ind[:-test]
+    test_ind = ind[-test:]
+    x_train = x[train_ind]
+    y_train = y[train_ind]
+    x_test = x[test_ind]
+    y_test = y[test_ind]
 
     return x_train, y_train, x_test, y_test
 
 def simple_model():
     model = Sequential()
-    model.add(Dense(n_pixels, input_dim=n_pixels, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(n_feat, input_dim=n_feat, kernel_initializer='normal', activation='relu'))
     model.add(Dense(n_classes, kernel_initializer='normal', activation='softmax'))
     # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -42,10 +45,13 @@ def simple_model():
 
 def cnn_model():
     model = Sequential()
-    model.add(Conv2D(32, (5, 5), input_shape=(28, 28, 1), activation='relu'))
+    model.add(BatchNormalization())
+    model.add(Conv2D(64, (4, 4), input_shape=(28, 28, 1), activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.2))
     model.add(Flatten())
+    model.add(Dense(256, activation='relu'))
+    model.add(Dropout(0.1))
     model.add(Dense(128, activation='relu'))
     model.add(Dense(n_classes, activation='softmax'))
     # Compile model
@@ -73,14 +79,14 @@ def plot_weights_biases(model):
         min_val = np.min(matrix)
         mean_val = np.mean(matrix)
         if i % 2:
-            wb.append(('Bias '+str(layer), max_val, 'c'))
-            wb.append(('Bias '+str(layer), min_val, 'y'))
-            wb.append(('Bias '+str(layer), mean_val, 'm'))
+            wb.append(('B'+str(layer), max_val, 'c'))
+            wb.append(('B'+str(layer), min_val, 'y'))
+            wb.append(('B'+str(layer), mean_val, 'm'))
 
         else:
-            wb.append(('Weight '+str(layer), max_val, 'c'))
-            wb.append(('Weight '+str(layer), min_val, 'y'))
-            wb.append(('Weight '+str(layer), mean_val, 'm'))
+            wb.append(('W'+str(layer), max_val, 'c'))
+            wb.append(('W'+str(layer), min_val, 'y'))
+            wb.append(('W'+str(layer), mean_val, 'm'))
 
     labels = [v[0] for v in wb]
     values = [v[1] for v in wb]
@@ -89,6 +95,7 @@ def plot_weights_biases(model):
 
     plt.title('Analyzing weights and biases')
     plt.ylabel('Values')
+    plt.ylim(-3,3)
     elements = \
         [Line2D([0], [0], marker='o', color='c', label='Maximum'),
         Line2D([0], [0], marker='o', color='y', label='Minimum'),
@@ -111,9 +118,9 @@ if __name__ == '__main__':
     print('load data')
     x_train, y_train, x_test, y_test = load_data()
     print('build model')
-    model = cnn_model()
+    model = simple_model()
     print('fit model')
-    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=5, batch_size=100, verbose=2)
-    plot_scores(history.history)
-    plot_weights_biases(model)
-    find_errors(model, x_test, y_test)
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=5, batch_size=10, verbose=2)
+    # plot_scores(history.history)
+    # plot_weights_biases(model)
+    # find_errors(model, x_test, y_test)
