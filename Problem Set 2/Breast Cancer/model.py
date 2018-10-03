@@ -12,12 +12,12 @@ from keras.layers.normalization import BatchNormalization
 from keras.utils import to_categorical
 from matplotlib.lines import Line2D
 
-seed = 7
+seed = 10
 np.random.seed(seed)
 n_feat=9
 n_classes=2 
 
-def load_data(split=0.15):
+def load_data(split=0.20):
     x = np.loadtxt('breastCancerData.csv', delimiter=',')
     y = np.loadtxt('breastCancerLabels.csv')
     y = to_categorical(y)
@@ -35,28 +35,20 @@ def load_data(split=0.15):
 
     return x_train, y_train, x_test, y_test
 
-def simple_model():
-    model = Sequential()
-    model.add(Dense(n_feat, input_dim=n_feat, kernel_initializer='normal', activation='relu'))
-    model.add(Dense(n_classes, kernel_initializer='normal', activation='softmax'))
-    # Compile model
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    return model
-
-def cnn_model():
+def forward_model():
     model = Sequential()
     model.add(BatchNormalization())
-    model.add(Conv2D(64, (4, 4), input_shape=(28, 28, 1), activation='relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.2))
-    model.add(Flatten())
-    model.add(Dense(256, activation='relu'))
-    model.add(Dropout(0.1))
-    model.add(Dense(128, activation='relu'))
-    model.add(Dense(n_classes, activation='softmax'))
+    model.add(Dense(n_feat, input_dim=n_feat, kernel_initializer='normal', activation='sigmoid'))
+    model.add(Dense(1000, activation='sigmoid'))
+    model.add(Dense(1000, activation='sigmoid'))
+    # model.add(Dropout(0.1))
+    # model.add(Dense(512, activation='sigmoid'))
+    model.add(Dense(n_classes, kernel_initializer='normal', activation='softmax'))
+    
     # Compile model
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
+
 
 def plot_scores(scores):
     f = plt.figure(1)
@@ -118,9 +110,9 @@ if __name__ == '__main__':
     print('load data')
     x_train, y_train, x_test, y_test = load_data()
     print('build model')
-    model = simple_model()
+    model = forward_model()
     print('fit model')
-    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=5, batch_size=10, verbose=2)
-    # plot_scores(history.history)
-    # plot_weights_biases(model)
-    # find_errors(model, x_test, y_test)
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=100, batch_size=10, verbose=2)
+    plot_scores(history.history)
+    plot_weights_biases(model)
+    find_errors(model, x_test, y_test)

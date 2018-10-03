@@ -1,0 +1,3 @@
+Image 13 should have label 0 but predicted as 1
+Image 20 should have label 0 but predicted as 1
+Image 94 should have label 0 but predicted as 1
