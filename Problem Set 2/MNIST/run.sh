@@ -1,5 +1,5 @@
 #!/bin/sh
-#SBATCH --qos=shallow
+#SBATCH --qos=dque
 #SBATCH --mem=MaxMemPerNode
 #SBATCH --time=02:00:00
 

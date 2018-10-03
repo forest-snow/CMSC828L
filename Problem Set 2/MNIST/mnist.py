@@ -1,8 +1,14 @@
-import numpy as np 
+import numpy as np
+import matplotlib
+matplotlib.use('agg') 
 import matplotlib.pyplot as plt
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
+from keras.layers import Flatten
+from keras.layers.convolutional import Conv2D
+from keras.layers.convolutional import MaxPooling2D
+from keras.utils import np_utils
 from matplotlib.lines import Line2D
 
 seed = 7
@@ -18,6 +24,8 @@ def load_data():
     # reshape
     x_train = x_train.reshape(x_train.shape[0], n_pixels).astype('float32')
     x_test = x_test.reshape(x_test.shape[0], n_pixels).astype('float32')
+    # x_train = x_train.reshape(x_train.shape[0], 28, 28, 1).astype('float32')
+    # x_test = x_test.reshape(x_test.shape[0], 28, 28, 1).astype('float32')
 
     # normalize
     x_train = x_train/255.0
@@ -29,6 +37,7 @@ def build_model():
     model = Sequential()
     model.add(Dense(n_pixels, input_dim=n_pixels, kernel_initializer='normal', activation='relu'))
     model.add(Dense(n_classes, kernel_initializer='normal', activation='softmax'))
+    # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
 
@@ -88,8 +97,11 @@ def find_errors(model, x_test, y_test, limit=10):
 
 
 if __name__ == '__main__':
+    print('load data')
     x_train, y_train, x_test, y_test = load_data()
+    print('build model')
     model = build_model()
+    print('fit model')
     history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=1, batch_size=2000, verbose=2)
     plot_scores(history.history)
     plot_weights_biases(model)
