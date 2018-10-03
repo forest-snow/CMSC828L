@@ -1,0 +1,10 @@
+Image 8 should have label 5 but predicted as 6
+Image 115 should have label 4 but predicted as 9
+Image 247 should have label 4 but predicted as 2
+Image 259 should have label 6 but predicted as 0
+Image 321 should have label 2 but predicted as 7
+Image 340 should have label 5 but predicted as 3
+Image 381 should have label 3 but predicted as 7
+Image 445 should have label 6 but predicted as 0
+Image 495 should have label 8 but predicted as 0
+Image 582 should have label 8 but predicted as 2

@@ -32,17 +32,51 @@ def build_model():
     return model
 
 def plot_scores(scores):
+    f = plt.figure(1)
     plt.plot(scores['acc'])
     plt.plot(scores['val_acc'])
-    plt.title('model accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.show()
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epochs')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    f.savefig('scores.png')
+
+def plot_weights_biases(model):
+    f = plt.figure(2)
+    weights = []
+    biases = []
+    wb = []
+    for i, matrix in enumerate(model.get_weights()):
+        layer = int(i / 2) + 1
+        if i % 2:
+            val = np.max(matrix)
+            wb.append(('Bias '+str(layer), val))
+        else:
+            val = np.max(np.mean(matrix, axis=0))
+            wb.append(('Weight '+str(layer), val))
+    labels = [v[0] for v in wb]
+    values = [v[1] for v in wb]
+    plt.scatter(labels, values)
+
+    plt.title('Analyzing weights and biases')
+    plt.ylabel('Maximum value')
+    f.savefig('wb.png')
+
+def find_errors(model, x_test, y_test, limit=10):
+    with open('errors.txt', 'w') as f:
+        pred = model.predict_classes(x_test).reshape((-1,))
+        y = np.argmax(y_test, axis=1)
+        errors = np.nonzero(pred != y)[0]
+        errors = errors[: min(limit, len(errors))]
+        for e in errors:
+            print('Image {} should have label {} but predicted as {}'\
+                .format(e, y[e], pred[e]), file=f)
 
 
 if __name__ == '__main__':
     x_train, y_train, x_test, y_test = load_data()
     model = build_model()
-    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=5, batch_size=200, verbose=2)
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=20, batch_size=2000, verbose=2)
     plot_scores(history.history)
+    plot_weights_biases(model)
+    find_errors(model, x_test, y_test)
