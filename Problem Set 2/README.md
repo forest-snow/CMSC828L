@@ -75,7 +75,7 @@
 * Making submissions shorter faster/easier to grade is better for both of us (please don't be unnescesarily verbose)
   * 6 total pages of pdfs is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
 
-* Including all relevant figures, data displays, etc in an immediately obvious form is thre biggest thing you can do to improve your grade
+* Including all relevant figures, data displays, etc. in an immediately obvious form is the simplest thing you can do to improve your grade. These all must be graded very fast, and if it isn't obvious you have something, then your grade will reflect you not having it.
 
 * Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
 
