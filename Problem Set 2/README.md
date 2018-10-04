@@ -12,9 +12,11 @@
 
 * Have reasonable hyperparameters
 
+
 # You will submit
 
 * 3 .py files and .pdf, or 3 jupyter notebook files (*using the most recent version of jupyter*)
+  *Only submitting 1 file is *not* what you are supposed to do
 
 * Each much be submitted to the correct assignment for each dataset on ELMNS
 
@@ -25,7 +27,6 @@
 * Some sort of reasonable print outs representative of the weight and biases (*not the entire things*)
   * The goal of this is to ensure that, for example, all you weights are not 0 (or something akin to that), do what you feel makes sense
   
-
 * Examples of datapoints that fail in your models
 
 * An explanation of why what you've included for all those things make sense
@@ -33,6 +34,11 @@
 * An explanation of how/why your network's shape and layer choices, your loss function, and your activation function are correct
 
 * Anything else you did that would convince us that you know what you're doing
+
+* Do not submit the data after you split it etc., or a saved version of your model. 
+
+* Do not include trash files in your submission (_MACOSX directories, .git file, .trash files, etc.)
+
 
 # Allowed dependencies
 
@@ -61,13 +67,57 @@
 
 * You may *not* depend on python-mnist (used in some of the preprocessing scripts)
 
-# Style Guidelines
 
-I expected a general statement of "use your best judgement" would be sufficient, but it clearly was not, and now we have to have guidelines:
+# Report Guidelines
+
+* The code you give us should be a formality, everything should be laid out in the pdf or clearly explained in Jupyter notebook (in English and without a bunch of extra outputs)
+
+* Making submissions shorter faster/easier to grade is better for both of us (please don't be unnescesarily verbose)
+  * 6 total pages of pdfs is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
+
+* Including all relevant figures, data displays, etc in an immediately obvious form is thre biggest thing you can do to improve your grade
+
+* Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
+
+* You're allowed to do some models in Jupyter and some in .py+.pdf, but please dont; making things easier for the TAs is better for you too
+
+* If you're on the fence about .py and .pdf vs a jupyter notebook, please use .py and .pdf (it's easier for us to grade)
+
+* No submitting writeup files with an unreasonably large amount of white space
+
+* *Do not include large amounts of code in your writeups*
 
 
+# Code Guidelines
 
-# Notes
+* You must use Python 3.5 or greater
+
+* You must start with the datasets as included from this repo, using the processed forms provided in the git repo; when your code is run during grading, this is all that will be available
+
+* You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
+
+* You aren't allowed to do data augmentation, to pad the data, or do anything similar to those
+  * In the most general form possible, you aren't allowed to alter the data in any meaningful way before putting it into the model
+
+* If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that when we run your code *without* having to rerun that portion, that portion won't run by default (but is trivial to enable if needed)
+
+* You cannot .py and jupyter files for one dataset
+
+* Your writeup *must* be in the form of a .pdf (not .docx etc.) or we will not read it
+
+* The data processing files can not be called by your code
+
+* Your code can not save things to disk when run by default, or edit files on disk in any way
+  * Editing local files is tantamount to cheating
+
+* Your code can't use more than 6GB of ram
+  * Please don't screw this one up in particular, it'll make grading a mess and will result in a major deduction in points
+
+* Make sure you split the data into testing and training sets in your code where appropriate
+
+* All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
+
+# Other Notes
 
 * Make sure to scale your data from 0 to 1 and convert it to float32 before using it
 
@@ -77,30 +127,11 @@ I expected a general statement of "use your best judgement" would be sufficient,
 
 * If you can find a meaningful bug in the data processing code, some sort of extra credit will be awarded
 
-* Make sure you split the data into testing and training sets in your code where appropriate
-
-* You must use Python 3.5 or greater
-
-* The code you give us should be a formality, everything should be laid out in the pdf or clearly explained in Jupyter notebook (in English and without a bunch of extra outputs)
-
-* If you're on the fence about Python+pdf vs a jupyter notebook, please use Python+pdf (it's easier for us to grade)
-  * Please include seperate .pdf, .py, or jupyter files for each model
-
-* Making submissions shorter faster/easier to grade is better for both of us (please don't be unnescesarily verbose)
-
-  * 6 total pages of pdfs (with *large* figures, spacing, etc) is the absolute maximum you should be submitting (or the equivalent for jupyter notebooks)
-  
-* Please make sure that the write up isn't in broken or incoherent English (please don't do it after being awake for 30 hours straight, etc.)
-
-* You're allowed to do some models in Jupyter and some in .py+.pdf, but please dont; making things easier for the TAs is better for you too
-
 * The best way to get logistical/administrative questions about this assignment answered is to come to Justin's office hours (MW 5-6 in AVW 4101/4103)
 
 * That's also the best way to get weird Linux problems answered 
 
   * Ask Chen about weird macOS problems
-
-* All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
 
 * If you're doing this on a Windows system and have any issues beyond your Python code (i.e. "TensorFlow won't work/install right"), we can't help you
 
@@ -110,33 +141,6 @@ I expected a general statement of "use your best judgement" would be sufficient,
   
   * Yes, macOS should be fine
   
-* You must start with the datasets as included from this repo, using the processed forms provided in the git repo; when your code is run during grading, this is all that will be available
-  
-* You can not specify initial conditions (i.e. via a fixed random seed) in the file you submit
-
 * You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
 
-* You aren't allowed to do data augmentation, to pad the data, or do anything similar to those
-
-* If you implement a grid or genetic algorithm search for optimizing hyperparameters, submit your code in a way so that when we run your code *without* having to rerun that portion, that portion won't run by default (but is trivial to enable if needed)
-  
-* Your code can't use more than 6GB of ram
-  * Please don't screw this one up in particular, it'll make grading a mess and will result in a major deduction in points
-
-* The data processing files can not be called by your code
-
-* Your code can not save things to disk, or edit files on disk in any way
-  * Editing local files is tantamount to cheating
-
 * Any malicious pieces of code caused to be during grading will be considered accademic dishonesty
-
-* No mixing .py and jupyter for one dataset
-
-* No submitting writeup files with an unreasonably large amount of white space
-
-* Your writeup *must* be in the form of a .pdf
-
-* If you're only submitting 1 file, please do not zip it
-
-* Please do not submit the data after you split it etc., or a saved version of your model. 
-  * Please do not have your code generate those locally by default when run either.
