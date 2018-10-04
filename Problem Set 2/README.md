@@ -61,6 +61,12 @@
 
 * You may *not* depend on python-mnist (used in some of the preprocessing scripts)
 
+# Style Guidelines
+
+I expected a general statement of "use your best judgement" would be sufficient, but it clearly was not, and now we have to have guidelines:
+
+
+
 # Notes
 
 * Make sure to scale your data from 0 to 1 and convert it to float32 before using it
@@ -71,7 +77,7 @@
 
 * If you can find a meaningful bug in the data processing code, some sort of extra credit will be awarded
 
-* Make sure you split the data into testing and training sets in your code
+* Make sure you split the data into testing and training sets in your code where appropriate
 
 * You must use Python 3.5 or greater
 
