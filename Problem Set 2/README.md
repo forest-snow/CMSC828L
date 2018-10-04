@@ -89,6 +89,10 @@
 
 * Figures are always better than words (this is something that will always be true for as long as you work in CS)
 
+* Use a font typically found to represent words, not a monospace font typically found in text editors and IDEs
+
+* Don't do weird things with colors (though colored figures are much better; that's also true for as long as you work in CS)
+
 # Code Guidelines
 
 * You must use Python 3.5 or greater
