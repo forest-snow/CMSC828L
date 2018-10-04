@@ -16,7 +16,7 @@
 # You will submit
 
 * 3 .py files and .pdf, or 3 jupyter notebook files (*using the most recent version of jupyter*)
-  *Only submitting 1 file is *not* what you are supposed to do
+  * Only submitting 1 file is *not* what you are supposed to do
 
 * Each much be submitted to the correct assignment for each dataset on ELMNS
 
