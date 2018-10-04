@@ -132,6 +132,8 @@
   
 * No including more than ~5 files per dataset. Remember we have to actually read these things.
 
+* Mixing Jupyter noteboks with the report in a .pdf *is* allowed, and is preferred to including the report only in the jupyter notebook
+
 # Other Notes
 
 * Each folder includes the original data, and my processing code (which contains the original data source)
