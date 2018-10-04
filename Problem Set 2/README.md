@@ -122,11 +122,11 @@
 
 * All computations/machine learning must be done in Keras. Don't see that NumPy, etc. are allowed dependencies and do something weird.
 
-# Other Notes
-
 * Make sure to scale your data from 0 to 1 and convert it to float32 before using it
 
-  * You must use single precision for all computations for this task
+  * You *must* use single precision for all computations for this task
+
+# Other Notes
 
 * Each folder includes the original data, and my processing code (which contains the original data source)
 
