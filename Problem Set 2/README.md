@@ -93,6 +93,8 @@
 
 * Don't do weird things with colors (though colored figures are much better; that's also true for as long as you work in CS)
 
+* If your report is terrible, even if your code is perfect, you will not recieve full credit
+
 # Code Guidelines
 
 * You must use Python 3.5 or greater
