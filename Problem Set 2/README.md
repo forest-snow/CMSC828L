@@ -129,6 +129,8 @@
 * Make sure to scale your data from 0 to 1 and convert it to float32 before using it
 
   * You *must* use single precision for all computations for this task
+  
+* No including more than ~5 files per dataset. Remember we have to actually read these things.
 
 # Other Notes
 
