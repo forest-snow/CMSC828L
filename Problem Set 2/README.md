@@ -146,6 +146,6 @@
   
   * Yes, macOS should be fine
   
-* You're highly encouraged to use a GPU and/or the AVX instructions for training your code when possible
+* You're *highly* encouraged to use a GPU and/or the AVX instructions for training your code when possible
 
 * Any malicious pieces of code caused to be during grading will be considered accademic dishonesty
