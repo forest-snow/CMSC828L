@@ -87,6 +87,7 @@
 
 * *Do not include large amounts of code in your writeups*
 
+* Figures are always better than words (this is something that will always be true for as long as you work in CS)
 
 # Code Guidelines
 
