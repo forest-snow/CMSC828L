@@ -16,7 +16,6 @@
 # You will submit
 
 * 3 .py files and .pdf, or 3 jupyter notebook files (*using the most recent version of jupyter*)
-  * Only submitting 1 file is *not* what you are supposed to do
 
 * Each much be submitted to the correct assignment for each dataset on ELMNS
 
@@ -39,6 +38,9 @@
 
 * Do not include trash files in your submission (_MACOSX directories, .git file, .trash files, etc.)
 
+* Please only zip your submission file if there's a bunch (i.e. multiple .py files)
+  * If you're only submitting one file, do *not* put in in a .zip, .tar, .etc file
+  * If you're only submitting a .py and a .pdf file, please submit them individually as well
 
 # Allowed dependencies
 
