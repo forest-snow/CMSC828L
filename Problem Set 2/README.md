@@ -125,3 +125,12 @@
 * Any malicious pieces of code caused to be during grading will be considered accademic dishonesty
 
 * No mixing .py and jupyter for one dataset
+
+* No submitting writeup files with an unreasonably large amount of white space
+
+* Your writeup *must* be in the form of a .pdf
+
+* If you're only submitting 1 file, please do not zip it
+
+* Please do not submit the data after you split it etc., or a saved version of your model. 
+  * Please do not have your code generate those locally by default when run either.
