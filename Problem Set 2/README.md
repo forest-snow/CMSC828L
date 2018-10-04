@@ -134,6 +134,8 @@
 
 * Mixing Jupyter noteboks with the report in a .pdf *is* allowed, and is preferred to including the report only in the jupyter notebook
 
+* *Your code will be run in the PS2 directory in the git repo*, not the individual dataset directory, adress your file references accordingly
+
 # Other Notes
 
 * Each folder includes the original data, and my processing code (which contains the original data source)
