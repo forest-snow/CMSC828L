@@ -12,12 +12,12 @@ from keras.layers.normalization import BatchNormalization
 from keras.utils import to_categorical
 from matplotlib.lines import Line2D
 
-seed = 10
-np.random.seed(seed)
+# seed = 7
+# np.random.seed(seed)
 n_feat=9
 n_classes=2 
 
-def load_data(split=0.20):
+def load_data(split=0.15):
     x = np.loadtxt('breastCancerData.csv', delimiter=',')
     y = np.loadtxt('breastCancerLabels.csv')
     y = to_categorical(y)
@@ -39,10 +39,8 @@ def forward_model():
     model = Sequential()
     model.add(BatchNormalization())
     model.add(Dense(n_feat, input_dim=n_feat, kernel_initializer='normal', activation='sigmoid'))
-    model.add(Dense(1000, activation='sigmoid'))
-    model.add(Dense(1000, activation='sigmoid'))
-    # model.add(Dropout(0.1))
-    # model.add(Dense(512, activation='sigmoid'))
+    model.add(Dense(512, activation='sigmoid'))
+    model.add(Dense(512, activation='sigmoid'))
     model.add(Dense(n_classes, kernel_initializer='normal', activation='softmax'))
     
     # Compile model
@@ -57,7 +55,7 @@ def plot_scores(scores):
     plt.title('Model accuracy')
     plt.ylabel('Accuracy')
     plt.xlabel('Epochs')
-    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.legend(['Train', 'Test'], loc='lower right')
     f.savefig('scores.png')
 
 def plot_weights_biases(model):
@@ -87,12 +85,12 @@ def plot_weights_biases(model):
 
     plt.title('Analyzing weights and biases')
     plt.ylabel('Values')
-    plt.ylim(-3,3)
+    plt.ylim(-5,5)
     elements = \
         [Line2D([0], [0], marker='o', color='c', label='Maximum'),
         Line2D([0], [0], marker='o', color='y', label='Minimum'),
         Line2D([0], [0], marker='o', color='m', label='Mean')]
-    plt.legend(handles=elements, loc='upper left')
+    plt.legend(handles=elements, loc='lower left')
     f.savefig('wb.png')
 
 def find_errors(model, x_test, y_test, limit=10):
@@ -112,7 +110,9 @@ if __name__ == '__main__':
     print('build model')
     model = forward_model()
     print('fit model')
-    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=100, batch_size=10, verbose=2)
-    plot_scores(history.history)
-    plot_weights_biases(model)
-    find_errors(model, x_test, y_test)
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10, batch_size=20, verbose=2)
+    
+    # not saving to disk for submission
+    # plot_scores(history.history)
+    # plot_weights_biases(model)
+    # find_errors(model, x_test, y_test)

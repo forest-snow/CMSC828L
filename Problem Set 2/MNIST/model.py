@@ -10,8 +10,8 @@ from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import MaxPooling2D
 from matplotlib.lines import Line2D
 
-seed = 7
-np.random.seed(seed)
+# seed = 7
+# np.random.seed(seed)
 n_pixels=784
 n_classes=10 
 
@@ -114,6 +114,8 @@ if __name__ == '__main__':
     model = cnn_model()
     print('fit model')
     history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=5, batch_size=100, verbose=2)
-    plot_scores(history.history)
-    plot_weights_biases(model)
-    find_errors(model, x_test, y_test)
+
+    # not saving to disk for submission
+    # plot_scores(history.history)
+    # plot_weights_biases(model)
+    # find_errors(model, x_test, y_test)
