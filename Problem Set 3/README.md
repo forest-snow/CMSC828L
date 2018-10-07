@@ -46,7 +46,7 @@
 # Allowed dependencies
 
 * Keras / TensorFlow 
-  * *Only* for the preprocessing utils
+  * *Only* for the *Keras* preprocessing utils; you can't run Keras without TensorFlow
 
 * TensorBoard
 
