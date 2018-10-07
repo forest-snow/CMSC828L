@@ -7,6 +7,7 @@
 
 * Create the best autoencoder for the three meter dataset you can (best measured by MAE, more info in file), noting that the network must have at least one layer with less than half the number of datapoints rounded down
   * Reasonable hyperparameters are all that is needed, please describe the optimization process in your writeup and do not make the hyperparameter search run by default
+  * More instructions in readme in dataset folder
 
 * Predict if someone makes more or less than 50k using the adult dataset
   * Note that this dataset strictly refers to people living in the US
