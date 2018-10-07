@@ -3,7 +3,7 @@
 # Using PyTorch, write seperate neural networks that
 
 * Classify the flowers shown in the flower dataset
-  * You must keep the flowers with all 3 color deminions (no turning them to grey scale or similar)
+  * The flowers are in color and you'll have to work with that. You can't turn them to greyscale etc.
 
 * Create the best autoencoder for the three meter dataset you can (best measured by MAE, more info in file), noting that the network must have at least one layer with less than half the number of datapoints rounded down
   * Reasonable hyperparameters are all that is needed, please describe the optimization process in your writeup and do not make the hyperparameter search run by default
@@ -70,11 +70,11 @@
 
 * You're only using PyTorch (obviously)
 
-* Nontrivial datapreprocessing is required in some cases (look carefully at the three meter data)
+* Nontrivial datapreprocessing is required in some cases (look carefully at the three meter and adult data)
 
-* These datasets will be very computationally intensive. While HW2 could be run on your laptop, for this one if you can build with AVX instructions, use a GPU, use a workstation etc. I would *very strongly encourage you to do so*
+* These datasets will be more computationally intensive, and the flower dataset will be a LOT more computationally intensive. While HW2 could be run on your laptop, for this one if you can build with AVX instructions, use a GPU, use a workstation etc. I would *very strongly encourage you to do so*
   * For those of you proficient and with AWS, GCP, etc. accounts set up, doing this entire assignment on the GPUs there should cost lest than $20
-    * The TAs are not AWS/GCP experts, though Justin has nonzero experience with GCP
+    * The TAs are not AWS/GCP experts, though Justin has non-zero experience with GCP
     * If you don't know what AWS/GCP etc. are, please do *not* attempt this
 
 * The extra credit (see below)
