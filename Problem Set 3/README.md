@@ -86,7 +86,7 @@
   * You're a masters student and don't plan to do a PhD or go into ML research
   * You meet with Justin in his office hours for permission early into HW3 or before it starts
   
-* Be very sure you're scaling the data in a proper manner
+* Be very sure you're scaling the data values from 0 to 1
 
 # Extra Credit
 
