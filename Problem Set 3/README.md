@@ -9,7 +9,7 @@
   * Reasonable hyperparameters are all that is needed, please describe the optimization process in your writeup and do not make the hyperparameter search run by default
 
 * Predict if someone makes more or less than 50k using the adult dataset
-
+  * Note that this dataset strictly refers to people living in the US
 
 * Do this using the best practices discussed in class (i.e. one hot encoding, ReLU, CNNS when you should, etc.)
 
