@@ -84,7 +84,7 @@
 * If you want to use TensorFlow instead of PyTorch, you are allowed to IF:
   * You already know TensorFlow and understand that you won't get as much TA help
   * You're a masters student and don't plan to do a PhD or go into ML research
-  * You meet with Justin in his office hours for permission
+  * You meet with Justin in his office hours for permission early into HW3 or before it starts
 
 # Extra Credit
 
