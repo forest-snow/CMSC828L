@@ -3,6 +3,7 @@
 # Using PyTorch, write seperate neural networks that
 
 * Classify the flowers shown in the flower dataset
+  * You must keep the flowers with all 3 color deminions (no turning them to grey scale or similar)
 
 * Create the best autoencoder for the three meter dataset you can (best measured by MAE, more info in file), noting that the network must have at least one layer with less than half the number of datapoints rounded down
   * Reasonable hyperparameters are all that is needed, please describe the optimization process in your writeup and do not make the hyperparameter search run by default
