@@ -81,6 +81,11 @@
 
 * There's virtually no decent public models for you to borrow from online, as is the case for many of the problems in HW2
 
+* If you want to use TensorFlow instead of PyTorch, you are allowed to IF:
+  * You already know TensorFlow and understand that you won't get as much TA help
+  * You're a masters student and don't plan to do a PhD or go into ML research
+  * You meet with Justin in his office hours for permission
+
 # Extra Credit
 
 * Do a gridsearch or similar (i.e. genetic algorithms) to find the best hyperparameters for three meter data set with *any* bottleneck
