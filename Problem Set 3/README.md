@@ -1,4 +1,4 @@
-# Due October 9th
+# Due October 23rd
 
 # Using PyTorch, write seperate neural networks that
 
@@ -93,12 +93,12 @@
 
 * Do a gridsearch or similar (i.e. genetic algorithms) to find the best hyperparameters for three meter data set with *any* bottleneck
   * You can get up to 5 extra points for that dataset (for a total of 16.7% extra credit on the entire assignment), the best in the class *may* recieve more points at Justin's discression
-  * This may *only* be submitted in person at Justin's office hours, with a final due date of October 31 (1 day after the rest is due)
+  * This may *only* be submitted in person at Justin's office hours, with a final due date of October 24th (1 day after the rest is due)
   * There is a greater than 0 chance that the best result will be used in a research publication (with the accompanying credit)
-  * You must take into account the impact of initial conditions
+  * You must take into account the impact of initial conditions (which is very large here)
   * Please don't include this in your regular submission for TA sanity purposes
   * The part can not be submitted late for credit (without extenuating circumstances etc.), though I'd be interested in seeing late ones if they're well done for research purposes
-  * I very strongly encourage you to come on the 31st instead of the 29th to submit it, especially on the 29th people who are showing up with this will be sent to the end of the line
+  * I very strongly encourage you to come on the 24st instead of the 22th to submit it, especially on the 22th people who are showing up with this will be sent to the end of the line
   * This will almost certainly require a workstation, cluster, or etc. to complete, please speak to David Jacob's to work out access if you can't arrange it on your own (doing this on AWS or GCP should cost less than $20 though); do *not* attempt this without priopr experience
   * All neural network architectures (1D CNNs, VAEs, RNNs, LSTMs, etc.) are fair game and are highly encouraged
   * You can use any main stream open source deep learning library you want for this (noteably TensorFlow)
