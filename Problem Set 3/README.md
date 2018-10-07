@@ -94,6 +94,7 @@
   * All neural network architectures (1D CNNs, VAEs, RNNs, LSTMs, etc.) are fair game and are highly encouraged
   * You can use any main stream open source deep learning library you want for this (noteably TensorFlow)
   * You must bring a half decent visualization of the neural networks architecture when you presnet this to me (showing me a list of values will not result in full credit)
+  * You must adress the large impact initial conditions will have on performance (multiple tests, etc.)
 
 # Report Guidelines
 
