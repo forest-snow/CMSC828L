@@ -1,6 +1,6 @@
 import numpy as np
-import matplotlib
-matplotlib.use('agg') 
+# import matplotlib
+# matplotlib.use('agg') 
 import matplotlib.pyplot as plt
 from keras.models import Sequential
 from keras.layers import Dense
@@ -48,7 +48,7 @@ def forward_model():
     return model
 
 
-def plot_scores(scores):
+def plot_scores(scores, save=False):
     f = plt.figure(1)
     plt.plot(scores['acc'])
     plt.plot(scores['val_acc'])
@@ -56,9 +56,11 @@ def plot_scores(scores):
     plt.ylabel('Accuracy')
     plt.xlabel('Epochs')
     plt.legend(['Train', 'Test'], loc='lower right')
-    f.savefig('scores.png')
+    plt.show()
+    if save:
+        f.savefig('scores.png')
 
-def plot_weights_biases(model):
+def plot_weights_biases(model, save=False):
     f = plt.figure(2)
     weights = []
     biases = []
@@ -91,7 +93,9 @@ def plot_weights_biases(model):
         Line2D([0], [0], marker='o', color='y', label='Minimum'),
         Line2D([0], [0], marker='o', color='m', label='Mean')]
     plt.legend(handles=elements, loc='lower left')
-    f.savefig('wb.png')
+    plt.show()
+    if save:
+        f.savefig('wb.png')
 
 def find_errors(model, x_test, y_test, limit=10):
     with open('errors.txt', 'w') as f:
@@ -110,9 +114,9 @@ if __name__ == '__main__':
     print('build model')
     model = forward_model()
     print('fit model')
-    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10, batch_size=20, verbose=2)
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=50, batch_size=20, verbose=2)
     
     # not saving to disk for submission
-    # plot_scores(history.history)
-    # plot_weights_biases(model)
+    plot_scores(history.history)
+    plot_weights_biases(model)
     # find_errors(model, x_test, y_test)
