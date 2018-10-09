@@ -73,10 +73,12 @@
 
 * Nontrivial datapreprocessing is required in some cases (look carefully at the three meter and adult data)
 
-* These datasets will be more computationally intensive, and the flower dataset will be a LOT more computationally intensive. While HW2 could be run on your laptop, for this one if you can build with AVX instructions, use a GPU, use a workstation etc. I would *very strongly encourage you to do so*
+* These datasets will be more computationally intensive, and the flower dataset will be a LOT more computationally intensive. While HW2 could be run on your laptop without much issue, for this one if you can build with AVX instructions, use a GPU, use a workstation etc. I would *very strongly* encourage you to do so
   * For those of you proficient and with AWS, GCP, etc. accounts set up, doing this entire assignment on the GPUs there should cost lest than $20
     * The TAs are not AWS/GCP experts, though Justin has non-zero experience with GCP
-    * If you don't know what AWS/GCP etc. are, please do *not* attempt this
+    * If you're very new to AWS/GCP, please be very carefu to not accidentally run up a large bill for yourself (by leaving something running on accident etc.)
+   * Speak to David Jacobs about free AWS credits to use for this class, specific there are pending
+   * If you don't have a personal GPU or AWS/GCP knowledge, talk to David Jacobs and something may be arrangeable
 
 * The extra credit (see below)
 
