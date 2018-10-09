@@ -91,10 +91,10 @@
 
 # Extra Credit
 
-* Do a gridsearch or similar (i.e. genetic algorithms) to find the best hyperparameters for three meter data set with *any* bottleneck
+* Do a gridsearch or similar (i.e. genetic algorithms) to find the best hyperparameters for three meter data set with *any* bottleneck, or said another way: find the bottleneck that produces the best autoencoder
   * You can get up to 5 extra points for that dataset (for a total of 16.7% extra credit on the entire assignment), the best in the class *may* recieve more points at Justin's discression
   * This may *only* be submitted in person at Justin's office hours, with a final due date of October 24th (1 day after the rest is due)
-  * There is a greater than 0 chance that the best result will be used in a research publication (with the accompanying credit)
+  * Finding very good hyperparameters here model is of potential use to me in research, and with the students permission there's a chance that their model will be used in a publication (with the relevant credit and so on)
   * You must take into account the impact of initial conditions (which is very large here)
   * Please don't include this in your regular submission for TA sanity purposes
   * The part can not be submitted late for credit (without extenuating circumstances etc.), though I'd be interested in seeing late ones if they're well done for research purposes
