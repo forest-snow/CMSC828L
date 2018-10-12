@@ -34,16 +34,18 @@ class CustomData(Dataset):
 
     def __getitem__(self, index):
         image = self.images[index]
+        label = self.labels[index]
         if self.transforms is not None:
             image = self.transforms(image)
-        label = self.labels[index]
+            # label = self.transforms(label)
+
         return image, label
 
 def load_data(split=0.15):
     x = np.load('./Flowers/flower_imgs.npy')
-    x = x/255.0
+    # x = x/255.0
     y = np.load('./Flowers/flower_labels.npy')
-    y = to_categorical(y)
+    # y = to_categorical(y)
 
     size = x.shape[0]
     test = int(split*size)
@@ -60,8 +62,8 @@ def load_data(split=0.15):
     train = CustomData(x_train, y_train, train_ind, transforms)
     test = CustomData(x_test, y_test, test_ind, transforms)
 
-    print(train.images)
-    print(train.labels)
+    # print(train.images)
+    # print(train.labels)
     train_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(dataset=train, 
@@ -99,20 +101,23 @@ class CNNet(nn.Module):
         self.unit6 = Unit(in_channels=64, out_channels=64)
         self.unit7 = Unit(in_channels=64, out_channels=64)
 
-        self.pool2 = nn.MaxPool2d(kernel_size=2)
+        self.pool2 = nn.AvgPool2d(kernel_size=4)
 
 
-        self.net = nn.Sequential(self.unit1, self.unit2, self.unit3, self.pool1, self.unit4, self.unit5, self.unit6
+        self.net = nn.Sequential(self.unit1, self.unit2, self.unit3, self.pool1, self.unit4, self.unit6
                                  , self.unit7, self.pool2)
 
         self.fc = nn.Linear(in_features=64, out_features=n_class)
-        self.sm = nn.Softmax()
+        # self.sm = nn.Softmax()
 
     def forward(self, input):
+        # print(1, input.size())
         output = self.net(input)
+        # print(2, output.size())
         output = output.view(-1, 64)
         output = self.fc(output)
-        output = self.sm(output)
+        # output = self.sm(output)
+        # print(3, output.size())
         return output
 
 
@@ -132,7 +137,8 @@ def train():
         labels = labels.to(device)
 
         outputs = model(images)
-        loss = criterion(outputs)
+        labels = labels.long()
+        loss = criterion(outputs, labels)
 
         optimizer.zero_grad()
         loss.backward()
@@ -172,7 +178,7 @@ if __name__ == '__main__':
         history.append([train_acc, test_acc])
         if (epoch+1) % 1 == 0 or epoch == n_epoch-1:
             print('epoch {}: , train_acc: {}, test_acc: {}'.
-                format(epoch, train_acc, test_acc))
+                format(epoch+1, train_acc, test_acc))
 
     np.save('history.npy', np.array(history))
 
