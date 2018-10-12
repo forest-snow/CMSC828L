@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 from keras.utils import to_categorical
-import os
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
@@ -38,9 +37,9 @@ class CustomData(Dataset):
         return image, label
 
 def load_data(split=0.15):
-    x = np.load('flower_imgs.npy')
+    x = np.load('./Flowers/flower_imgs.npy')
     x = x/255.0
-    y = np.load('flower_labels.npy')
+    y = np.load('./Flowers/flower_labels.npy')
     y = to_categorical(y)
 
     size = x.shape[0]
@@ -55,6 +54,10 @@ def load_data(split=0.15):
 
     train = CustomData(x_train, y_train, train_ind)
     test = CustomData(x_test, y_test, test_ind)
+
+    print(train.images.shape)
+    print(train.labels.shape)
+
     train_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(dataset=train, 
@@ -157,7 +160,6 @@ def test():
 
 
 if __name__ == '__main__':
-    os.chdir('./Flowers')
 
     history = []
     for epoch in range(n_epoch):

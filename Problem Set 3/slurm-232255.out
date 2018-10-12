@@ -1,0 +1,27 @@
+/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+(3675, 32, 32, 3)
+(3675, 5)
+Traceback (most recent call last):
+  File "model_flowers.py", line 166, in <module>
+    train_acc = train()
+  File "model_flowers.py", line 130, in train
+    outputs = model(images)
+  File "/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/torch/nn/modules/module.py", line 477, in __call__
+    result = self.forward(*input, **kwargs)
+  File "model_flowers.py", line 108, in forward
+    output = self.net(input)
+  File "/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/torch/nn/modules/module.py", line 477, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/torch/nn/modules/container.py", line 91, in forward
+    input = module(input)
+  File "/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/torch/nn/modules/module.py", line 477, in __call__
+    result = self.forward(*input, **kwargs)
+  File "model_flowers.py", line 78, in forward
+    output = self.conv(input)
+  File "/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/torch/nn/modules/module.py", line 477, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 301, in forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [32, 3, 3, 3], expected input[100, 32, 32, 3] to have 3 channels, but got 32 channels instead
