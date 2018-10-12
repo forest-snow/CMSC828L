@@ -7,6 +7,7 @@ from keras.utils import to_categorical
 import os
 import torch
 import torch.nn as nn
+import torchvision as tv
 from torch.utils.data import Dataset, DataLoader
 
 seed = 7
@@ -20,21 +21,23 @@ learning_rate = 1e-3
 # CUDA for PyTorch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-
+trans = tv.transforms.Compose([tv.transforms.ToTensor()])
 
 class CustomData(Dataset):
-    def __init__(self, images, labels, ids):
+    def __init__(self, images, labels, ids, transforms):
         self.labels = labels
         self.images = images
         self.ids = ids
+        self.transforms = transforms
 
     def __len__(self):
         return len(self.labels)
 
     def __getitem__(self, index):
         image = self.images[index]
+        if self.transforms is not None:
+            image = self.transforms(image)
         label = self.labels[index]
-
         return image, label
 
 def load_data(split=0.15):
@@ -53,8 +56,8 @@ def load_data(split=0.15):
     x_test = x[test_ind]
     y_test = y[test_ind]
 
-    train = CustomData(x_train, y_train, train_ind)
-    test = CustomData(x_test, y_test, test_ind)
+    train = CustomData(x_train, y_train, train_ind, transforms)
+    test = CustomData(x_test, y_test, test_ind, transforms)
     train_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(dataset=train, 
