@@ -23,9 +23,10 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 class CustomData(Dataset):
-    def __init__(self, images, labels):
+    def __init__(self, images, labels, ids):
         self.labels = labels
         self.images = images
+        self.ids = ids
 
     def __len__(self):
         return len(self.labels)
@@ -52,8 +53,8 @@ def load_data(split=0.15):
     x_test = x[test_ind]
     y_test = y[test_ind]
 
-    train = CustomData(x_train, y_train)
-    test = CustomData(x_test, y_test)
+    train = CustomData(x_train, y_train, train_ind)
+    test = CustomData(x_test, y_test, test_ind)
     train_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(dataset=train, 
@@ -98,11 +99,13 @@ class CNNet(nn.Module):
                                  , self.unit7, self.pool2)
 
         self.fc = nn.Linear(in_features=64, out_features=n_class)
+        self.sm = nn.Softmax()
 
     def forward(self, input):
         output = self.net(input)
         output = output.view(-1, 64)
         output = self.fc(output)
+        output = self.sm(output)
         return output
 
 
@@ -161,7 +164,7 @@ if __name__ == '__main__':
         train_acc = train()
         test_acc = test()
         history.append([train_acc, test_acc])
-        if (epoch+1) % 10 == 0 or epoch == n_epoch-1:
+        if (epoch+1) % 1 == 0 or epoch == n_epoch-1:
             print('epoch {}: , train_acc: {}, test_acc: {}'.
                 format(epoch, train_acc, test_acc))
 
