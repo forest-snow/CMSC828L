@@ -1,6 +1,6 @@
 import numpy as np
-# import matplotlib
-# matplotlib.use('agg') 
+import matplotlib
+matplotlib.use('agg') 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from sklearn.preprocessing import MinMaxScaler
@@ -14,7 +14,7 @@ import sys
 seed = 7
 np.random.seed(seed)
 
-n_epoch = 20
+n_epoch = 100
 n_class = 5
 batch_size = 100
 learning_rate = 1e-3
@@ -40,11 +40,12 @@ class CustomData(Dataset):
     def __getitem__(self, index):
         image = self.images[index]
         label = self.labels[index]
+        i = self.ids[index]
         if self.transforms is not None:
             image = self.transforms(image)
             # label = self.transforms(label)
 
-        return image, label
+        return image, label, i
 
 def load_data(split=0.15):
     x = np.load('./Flowers/flower_imgs.npy')
@@ -127,17 +128,14 @@ class CNNet(nn.Module):
 
 
 
-train_loader, test_loader = load_data()
-model = CNNet(n_class).to(device)
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-criterion = nn.CrossEntropyLoss()
+
 
 
 def train():
     model.train()
     correct = 0
     total = 0
-    for i, (images, labels) in enumerate(train_loader):
+    for i, (images, labels, _) in enumerate(train_loader):
         images = images.to(device)
         labels = labels.to(device)
 
@@ -157,18 +155,31 @@ def train():
     return train_acc
 
 
-def test():
+def find_errors(predicted, labels, ids, limit=10):
+    with open('Flowers/errors.txt', 'w') as f:
+        errors = (predicted != labels).nonzero()
+        errors = errors[: min(limit, len(errors))]
+        for error in errors:
+            e = error.item()
+            print('Image {} should have label {} but predicted as {}'\
+                    .format(ids[e], labels[e], predicted[e]), file=f)
+
+
+
+def test(errors=False):
     model.eval()
     with torch.no_grad():
         correct = 0
         total = 0
-        for images, labels in test_loader:
+        for images, labels, ids in test_loader:
             images = images.to(device)
             labels = labels.to(device)
             outputs = model(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
+            if errors:
+                find_errors(predicted, labels, ids)
         test_acc = correct/total
         return test_acc
 
@@ -194,7 +205,6 @@ def plot_params(model, save=True):
         max_val = p.max().item()
         min_val = p.min().item()
         mean_val = p.mean().item()
-        print(i)
         wb.append((i, max_val, 'c'))
         wb.append((i, min_val, 'y'))
         wb.append((i, mean_val, 'm'))
@@ -216,12 +226,13 @@ def plot_params(model, save=True):
     if save:
         f.savefig('Flowers/wb.png')
 
-if __name__ == '__main__':
 
-    load = sys.argv[1]
+if __name__ == '__main__':
+    load = int(sys.argv[1])
     model = CNNet(n_class).to(device)
 
     if load:
+        print('loading')
         model.load_state_dict(torch.load(model_path, map_location='cpu'))
         scores = np.load(scores_path)
 
@@ -235,11 +246,11 @@ if __name__ == '__main__':
             train_acc = train()
             test_acc = test()
             scores.append([train_acc, test_acc])
-            if (epoch+1) % 1 == 0 or epoch == n_epoch-1:
+            if (epoch+1) % 5 == 0 or epoch == n_epoch-1:
                 print('Epoch {} train_acc: {}, test_acc: {}'.
                     format(epoch+1, train_acc, test_acc))
 
-        np.save(scores_paths, np.array(scores))
+        np.save(scores_path, np.array(scores))
 
 
       
@@ -248,6 +259,7 @@ if __name__ == '__main__':
 
     plot_scores(scores)
     plot_params(model)
+    test(errors=True)
 
 
 

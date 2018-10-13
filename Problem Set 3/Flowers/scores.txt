@@ -1,0 +1,23 @@
+/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+Epoch 5 train_acc: 0.6816326530612244, test_acc: 0.6824489795918367
+Epoch 10 train_acc: 0.7695238095238095, test_acc: 0.7112925170068027
+Epoch 15 train_acc: 0.8593197278911565, test_acc: 0.7752380952380953
+Epoch 20 train_acc: 0.9273469387755102, test_acc: 0.7608163265306123
+Epoch 25 train_acc: 0.9638095238095238, test_acc: 0.8408163265306122
+Epoch 30 train_acc: 0.96, test_acc: 0.7910204081632654
+Epoch 35 train_acc: 0.9836734693877551, test_acc: 0.9172789115646258
+Epoch 40 train_acc: 0.9970068027210884, test_acc: 0.9885714285714285
+Epoch 45 train_acc: 0.996734693877551, test_acc: 0.9975510204081632
+Epoch 50 train_acc: 0.9983673469387755, test_acc: 0.9983673469387755
+Epoch 55 train_acc: 0.9989115646258503, test_acc: 0.9989115646258503
+Epoch 60 train_acc: 0.998639455782313, test_acc: 0.9991836734693877
+Epoch 65 train_acc: 0.9983673469387755, test_acc: 0.9983673469387755
+Epoch 70 train_acc: 0.9975510204081632, test_acc: 0.9809523809523809
+Epoch 75 train_acc: 0.9752380952380952, test_acc: 0.9349659863945579
+Epoch 80 train_acc: 0.9989115646258503, test_acc: 0.9991836734693877
+Epoch 85 train_acc: 0.9991836734693877, test_acc: 0.9989115646258503
+Epoch 90 train_acc: 0.9991836734693877, test_acc: 0.9989115646258503
+Epoch 95 train_acc: 1.0, test_acc: 0.9994557823129252
+Epoch 100 train_acc: 1.0, test_acc: 0.9994557823129252

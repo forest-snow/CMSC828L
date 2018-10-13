@@ -3,5 +3,5 @@
 #SBATCH --partition=gpu
 #SBATCH --time=01:00:00
 #SBATCH --gres=gpu:1
-load_var=False
-python model_flowers.py $load_var
+load_var=0
+python model_meters.py $load_var
