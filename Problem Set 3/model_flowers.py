@@ -2,12 +2,14 @@ import numpy as np
 # import matplotlib
 # matplotlib.use('agg') 
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 from sklearn.preprocessing import MinMaxScaler
 from keras.utils import to_categorical
 import torch
 import torch.nn as nn
 import torchvision as tv
 from torch.utils.data import Dataset, DataLoader
+import sys
 
 seed = 7
 np.random.seed(seed)
@@ -16,6 +18,9 @@ n_epoch = 20
 n_class = 5
 batch_size = 100
 learning_rate = 1e-3
+
+model_path = 'model_flower.pt'
+scores_path = 'scores_flower.npy'
 
 # CUDA for PyTorch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -168,23 +173,86 @@ def test():
         return test_acc
 
 
+def plot_scores(scores, save=True):
+    f = plt.figure(1)
+    train_acc = [i[0] for i in scores]
+    test_acc = [i[1] for i in scores]
+    plt.plot(train_acc)
+    plt.plot(test_acc)
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epochs')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+    if save:
+        f.savefig('Flowers/scores.png')
+
+def plot_params(model, save=True):
+    f = plt.figure(2)
+    wb = []
+    for i, p in enumerate(model.parameters()):
+        max_val = p.max().item()
+        min_val = p.min().item()
+        mean_val = p.mean().item()
+        print(i)
+        wb.append((i, max_val, 'c'))
+        wb.append((i, min_val, 'y'))
+        wb.append((i, mean_val, 'm'))
+
+    labels = [v[0] for v in wb]
+    values = [v[1] for v in wb]
+    colors = [v[2] for v in wb]
+    plt.scatter(labels, values, c=colors)
+
+    plt.title('Analyzing weights and biases')
+    plt.ylabel('Values')
+    elements = \
+        [Line2D([0], [0], marker='o', color='c', label='Maximum'),
+        Line2D([0], [0], marker='o', color='y', label='Minimum'),
+        Line2D([0], [0], marker='o', color='m', label='Mean')]
+    plt.legend(handles=elements, loc='upper left')
+    plt.ylim(-3,3)
+    plt.show()
+    if save:
+        f.savefig('Flowers/wb.png')
 
 if __name__ == '__main__':
 
-    history = []
-    for epoch in range(n_epoch):
-        train_acc = train()
-        test_acc = test()
-        history.append([train_acc, test_acc])
-        if (epoch+1) % 1 == 0 or epoch == n_epoch-1:
-            print('epoch {}: , train_acc: {}, test_acc: {}'.
-                format(epoch+1, train_acc, test_acc))
+    load = sys.argv[1]
+    model = CNNet(n_class).to(device)
 
-    np.save('history.npy', np.array(history))
+    if load:
+        model.load_state_dict(torch.load(model_path, map_location='cpu'))
+        scores = np.load(scores_path)
+
+    else:
+        train_loader, test_loader = load_data()
+        optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+        criterion = nn.CrossEntropyLoss()
+
+        scores = []
+        for epoch in range(n_epoch):
+            train_acc = train()
+            test_acc = test()
+            scores.append([train_acc, test_acc])
+            if (epoch+1) % 1 == 0 or epoch == n_epoch-1:
+                print('Epoch {} train_acc: {}, test_acc: {}'.
+                    format(epoch+1, train_acc, test_acc))
+
+        np.save(scores_paths, np.array(scores))
 
 
-  
-    # Save the model checkpoint
-    torch.save(model.state_dict(), 'model.ckpt')
+      
+        # Save the model checkpoint
+        torch.save(model.state_dict(), model_path)
+
+    plot_scores(scores)
+    plot_params(model)
+
+
+
+
+
+
 
 
