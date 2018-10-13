@@ -16,7 +16,7 @@ np.random.seed(seed)
 
 n_epoch = 200
 batch_size = 500
-learning_rate = 1e-2
+learning_rate = 1e-3
 
 model_path = 'model_meter.pt'
 scores_path = 'scores_meter.npy'
