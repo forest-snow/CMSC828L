@@ -78,9 +78,11 @@ class NeuralNet(nn.Module):
         self.fc3 = nn.Linear(500, 1000)
         self.fc5 = nn.Linear(1000, n_class)
         self.nn = nn.Sequential(
-            self.fc1, nn.ReLU(), 
-            self.fc2, nn.ReLU(), 
-            self.fc3, nn.ReLU(),
+            nn.BatchNorm1d(num_features=67),
+            self.fc1, nn.ReLU(), Dropout(0.3), 
+            self.fc2, nn.ReLU(),
+            nn.BatchNorm1d(num_features=500),
+            self.fc3, nn.ReLU(), Dropout(0.2)
             self.fc5, nn.Tanh()
         )
 
@@ -101,6 +103,7 @@ class NeuralNet2(nn.Module):
         self.fc7 = nn.Linear(500, 100)
         self.fc8 = nn.Linear(100, n_class)
         self.nn = nn.Sequential(
+            nn.BatchNorm1d(num_features=67),
             self.fc1, nn.ReLU(), 
             self.fc2, nn.ReLU(), 
             self.fc3, nn.ReLU(), nn.Dropout(0.3),

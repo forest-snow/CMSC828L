@@ -1,0 +1,4 @@
+  File "model_adult.py", line 86
+    self.fc5, nn.Tanh()
+       ^
+SyntaxError: invalid syntax

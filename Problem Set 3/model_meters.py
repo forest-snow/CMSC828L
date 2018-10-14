@@ -14,7 +14,7 @@ import sys
 seed = 7
 np.random.seed(seed)
 
-n_epoch = 200
+n_epoch = 500
 batch_size = 500
 learning_rate = 1e-3
 
