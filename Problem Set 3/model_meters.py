@@ -58,18 +58,20 @@ class AutoEncoder(nn.Module):
     def __init__(self):
         super(AutoEncoder, self).__init__()
         self.encoder = nn.Sequential(
-            nn.Linear(33, 100),
+            nn.BatchNorm1d(num_features=33),    
+            nn.Linear(33, 500),
             nn.ReLU(),
-            nn.Linear(100, 50),
+            nn.Linear(500, 100),
             nn.ReLU(),
-            nn.Linear(50, 16)
+            nn.Linear(100, 16)
         )
         self.decoder = nn.Sequential(
-            nn.Linear(16, 50),
+            nn.BatchNorm1d(num_features=16),
+            nn.Linear(16, 100),
             nn.ReLU(),
-            nn.Linear(50, 100),
+            nn.Linear(100, 500),
             nn.ReLU(),
-            nn.Linear(100, 33),
+            nn.Linear(500, 33),
             nn.Tanh()
         )
 
@@ -128,8 +130,8 @@ def plot_scores(scores, save=True):
     f = plt.figure(1)
     train_acc = [i for i in scores]
     plt.plot(train_acc)
-    plt.title('Model accuracy')
-    plt.ylabel('Accuracy')
+    plt.title('Model loss')
+    plt.ylabel('Loss')
     plt.xlabel('Epochs')
     plt.legend(['MAE'], loc='upper right')
     plt.show()

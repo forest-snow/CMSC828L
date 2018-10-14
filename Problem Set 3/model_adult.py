@@ -14,7 +14,7 @@ import sys
 seed = 7
 np.random.seed(seed)
 
-n_epoch = 500
+n_epoch = 1000
 n_class = 2
 batch_size = 100
 learning_rate = 1e-3
@@ -75,13 +75,13 @@ class NeuralNet(nn.Module):
         super(NeuralNet, self).__init__()
         self.fc1 = nn.Linear(67, 100)
         self.fc2 = nn.Linear(100, 500)
-        self.fc3 = nn.Linear(500, 100)
-        self.fc4 = nn.Linear(100, n_class)
+        self.fc3 = nn.Linear(500, 1000)
+        self.fc5 = nn.Linear(1000, n_class)
         self.nn = nn.Sequential(
-            self.fc1, nn.ReLU(), nn.Dropout(0.2), 
+            self.fc1, nn.ReLU(), 
             self.fc2, nn.ReLU(), 
             self.fc3, nn.ReLU(),
-            self.fc4, nn.Tanh()
+            self.fc5, nn.Tanh()
         )
 
     def forward(self, x):

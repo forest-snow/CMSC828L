@@ -1,10 +1,1 @@
-Image 7987 should have label 0 but predicted as 1
-Image 28339 should have label 0 but predicted as 1
-Image 10909 should have label 0 but predicted as 1
-Image 10427 should have label 0 but predicted as 1
-Image 23364 should have label 0 but predicted as 1
-Image 1078 should have label 0 but predicted as 1
-Image 33840 should have label 0 but predicted as 1
-Image 3968 should have label 0 but predicted as 1
-Image 20441 should have label 0 but predicted as 1
-Image 29561 should have label 0 but predicted as 1
+Image 24442 should have label 1 but predicted as 0
