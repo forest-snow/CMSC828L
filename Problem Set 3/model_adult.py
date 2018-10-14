@@ -74,12 +74,14 @@ class NeuralNet(nn.Module):
     def __init__(self, n_class):
         super(NeuralNet, self).__init__()
         self.fc1 = nn.Linear(67, 100)
-        self.fc2 = nn.Linear(100, 500) 
-        self.fc3 = nn.Linear(500, n_class)
+        self.fc2 = nn.Linear(100, 500)
+        self.fc3 = nn.Linear(500, 100)
+        self.fc4 = nn.Linear(100, n_class)
         self.nn = nn.Sequential(
-            self.fc1, nn.ReLU(), 
+            self.fc1, nn.ReLU(), nn.Dropout(0.2), 
             self.fc2, nn.ReLU(), 
-            self.fc3, nn.Tanh()
+            self.fc3, nn.ReLU(),
+            self.fc4, nn.Tanh()
         )
 
     def forward(self, x):
@@ -214,7 +216,7 @@ def plot_params(model, save=True):
 
 if __name__ == '__main__':
     load = int(sys.argv[1])
-    model = NeuralNet2(n_class).to(device)
+    model = NeuralNet(n_class).to(device)
 
     if load:
         print('loading')
