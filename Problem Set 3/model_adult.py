@@ -113,13 +113,17 @@ def train():
 
 
 def find_errors(predicted, labels, ids, limit=10):
-    with open('Adult/errors.txt', 'w') as f:
-        errors = (predicted != labels).nonzero()
-        errors = errors[: min(limit, len(errors))]
-        for error in errors:
-            e = error.item()
-            print('Image {} should have label {} but predicted as {}'\
-                    .format(ids[e], labels[e], predicted[e]), file=f)
+    errors = (predicted != labels).nonzero()
+    print(errors)
+    errors = errors[: min(limit, len(errors))]
+    if len(errors) > 3:
+        with open('Adult/errors.txt', 'w') as f:
+            for error in errors:
+                e = error.item()
+                print('Image {} should have label {} but predicted as {}'\
+                        .format(ids[e], labels[e], predicted[e]), file=f)
+        return False
+    return True
 
 
 
@@ -137,7 +141,7 @@ def test(errors=False):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
             if errors:
-                find_errors(predicted, labels, ids)
+                errors = find_errors(predicted, labels, ids)
         test_acc = correct/total
         return test_acc
 
@@ -190,13 +194,13 @@ if __name__ == '__main__':
     load = int(sys.argv[1])
     model = NeuralNet(n_class).to(device)
 
+    train_loader, test_loader = load_data()
+
     if load:
-        print('loading')
         model.load_state_dict(torch.load(model_path, map_location='cpu'))
         scores = np.load(scores_path)
 
     else:
-        train_loader, test_loader = load_data()
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
         criterion = nn.CrossEntropyLoss()
 
