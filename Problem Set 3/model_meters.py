@@ -14,7 +14,7 @@ import sys
 seed = 7
 np.random.seed(seed)
 
-n_epoch = 500
+n_epoch = 200
 batch_size = 500
 learning_rate = 1e-3
 
@@ -49,12 +49,10 @@ def load_data(split=0.15):
     train_ind = ind[:-test]
     test_ind = ind[-test:]
     x_train = x[train_ind]
-    y_train = y[train_ind]
     x_test = x[test_ind]
-    y_test = y[test_ind]
 
     train = CustomData(x_train, train_ind)
-    test = CustomData(x_test, y_test, test_ind)
+    test = CustomData(x_test, test_ind)
 
     train_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
@@ -105,33 +103,28 @@ def train():
     return loss.item()
 
 
-def find_errors(predicted, labels, ids, limit=10):
+def find_errors(data, outputs, ids, limit=10):
+    loss = torch.sum((data-outputs).abs(), dim=1)
     with open('Three Meter/errors.txt', 'w') as f:
-        errors = (predicted != labels).nonzero()
-        errors = errors[: min(limit, len(errors))]
-        for error in errors:
-            e = error.item()
-            print('Image {} should have label {} but predicted as {}'\
-                    .format(ids[e], labels[e], predicted[e]), file=f)
+        i = loss.argmax()
+        print('Data {} has loss of {}'\
+            .format(ids[i], loss[i]), file=f)
+        print('Original: {}'.format(data[i]), file=f)
+        print('Recovered: {}'.format(outputs[i]), file=f)
 
 
 
 def test(errors=False):
     model.eval()
     with torch.no_grad():
-        correct = 0
-        total = 0
-        for images, ids in test_loader:
-            images = images.to(device)
-            labels = labels.to(device)
-            outputs = model(images)
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
+        for i, (data, ids) in enumerate(test_loader):
+            data = data.to(device)
+
+            outputs = model(data)
+            loss = criterion(outputs, data)
             if errors:
-                find_errors(predicted, labels, ids)
-        test_acc = correct/total
-        return test_acc
+                find_errors(data, outputs, ids)
+            return loss.item() 
 
 
 def plot_scores(scores, save=True):
@@ -139,10 +132,11 @@ def plot_scores(scores, save=True):
     train_acc = [i[0] for i in scores]
     test_acc = [i[1] for i in scores]
     plt.plot(train_acc)
+    plt.plot(test_acc)
     plt.title('Model loss')
     plt.ylabel('L1 Loss')
     plt.xlabel('Epochs')
-    plt.legend(['Train, Test'], loc='upper right')
+    plt.legend(['Train', 'Test'], loc='upper right')
     plt.show()
     if save:
         f.savefig('Three Meter/scores.png')
