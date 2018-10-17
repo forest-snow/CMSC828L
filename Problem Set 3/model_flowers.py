@@ -117,13 +117,9 @@ class CNNet(nn.Module):
         # self.sm = nn.Softmax()
 
     def forward(self, input):
-        # print(1, input.size())
         output = self.net(input)
-        # print(2, output.size())
         output = output.view(-1, 64)
         output = self.fc(output)
-        # output = self.sm(output)
-        # print(3, output.size())
         return output
 
 
