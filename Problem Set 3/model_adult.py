@@ -86,34 +86,6 @@ class NeuralNet(nn.Module):
         out = self.nn(x)
         return out
 
-class NeuralNet2(nn.Module):
-    def __init__(self, n_class):
-        super(NeuralNet2, self).__init__()
-        self.bn = nn.BatchNorm1d(num_features=67)
-        self.fc1 = nn.Linear(67, 100)
-        self.fc2 = nn.Linear(100, 500) 
-        self.fc3 = nn.Linear(500, 1000)
-        self.fc4 = nn.Linear(1000, 500)
-        self.fc5 = nn.Linear(500, 1000)
-        self.fc6 = nn.Linear(1000, 500)
-        self.fc7 = nn.Linear(500, 100)
-        self.fc8 = nn.Linear(100, n_class)
-        self.nn = nn.Sequential(
-            nn.BatchNorm1d(num_features=67),
-            self.fc1, nn.ReLU(), 
-            self.fc2, nn.ReLU(), 
-            self.fc3, nn.ReLU(), nn.Dropout(0.3),
-            self.fc4, nn.ReLU(),
-            self.fc5, nn.ReLU(), nn.Dropout(0.3),
-            self.fc6, nn.ReLU(),
-            self.fc7, nn.ReLU(),
-            self.fc8, nn.Tanh()
-        )
-
-    def forward(self, x):
-        out = self.bn(x)
-        out = self.nn(out)
-        return out
 
 
 def train():
@@ -214,6 +186,7 @@ def plot_params(model, save=True):
 
 
 if __name__ == '__main__':
+    save = True
     load = int(sys.argv[1])
     model = NeuralNet(n_class).to(device)
 
@@ -236,13 +209,13 @@ if __name__ == '__main__':
                 print('Epoch {} train_acc: {}, test_acc: {}'.
                     format(epoch+1, train_acc, test_acc))
 
-        np.save(scores_path, np.array(scores))
-      
-        torch.save(model.state_dict(), model_path)
+        if save:
+            np.save(scores_path, np.array(scores))
+            torch.save(model.state_dict(), model_path)
 
-    plot_scores(scores)
-    plot_params(model)
-    test(errors=True)
+    plot_scores(scores, save)
+    plot_params(model, save)
+    test(errors=save)
 
 
 

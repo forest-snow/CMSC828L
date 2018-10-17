@@ -224,6 +224,7 @@ def plot_params(model, save=True):
 
 
 if __name__ == '__main__':
+    save = True
     load = int(sys.argv[1])
     model = CNNet(n_class).to(device)
 
@@ -245,17 +246,13 @@ if __name__ == '__main__':
             if (epoch+1) % 5 == 0 or epoch == n_epoch-1:
                 print('Epoch {} train_acc: {}, test_acc: {}'.
                     format(epoch+1, train_acc, test_acc))
+        if save:
+            np.save(scores_path, np.array(scores))
+            torch.save(model.state_dict(), model_path)
 
-        np.save(scores_path, np.array(scores))
-
-
-      
-        # Save the model checkpoint
-        torch.save(model.state_dict(), model_path)
-
-    plot_scores(scores)
-    plot_params(model)
-    test(errors=True)
+    plot_scores(scores, save)
+    plot_params(model, save)
+    test(errors=save)
 
 
 

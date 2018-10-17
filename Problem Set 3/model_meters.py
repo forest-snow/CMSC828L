@@ -38,21 +38,29 @@ class CustomData(Dataset):
 
         return x, i
 
-def load_data():
+def load_data(split=0.15):
     x = np.loadtxt('./Three Meter/data.csv', delimiter=',')
     scaler = MinMaxScaler()
     x = scaler.fit_transform(x)
 
     size = x.shape[0]
+    test = int(split*size)
     ind = np.random.permutation(size)
-    x_train = x[ind]
+    train_ind = ind[:-test]
+    test_ind = ind[-test:]
+    x_train = x[train_ind]
+    y_train = y[train_ind]
+    x_test = x[test_ind]
+    y_test = y[test_ind]
 
-    train = CustomData(x_train, ind)
+    train = CustomData(x_train, train_ind)
+    test = CustomData(x_test, y_test, test_ind)
 
     train_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
-
-    return train_loader
+    test_loader = DataLoader(dataset=train, 
+        batch_size=batch_size, shuffle=False)
+    return train_loader, test_loader
 
 class AutoEncoder(nn.Module):
     def __init__(self):
@@ -97,43 +105,44 @@ def train():
     return loss.item()
 
 
-# def find_errors(predicted, labels, ids, limit=10):
-#     with open('Three Meter/errors.txt', 'w') as f:
-#         errors = (predicted != labels).nonzero()
-#         errors = errors[: min(limit, len(errors))]
-#         for error in errors:
-#             e = error.item()
-#             print('Image {} should have label {} but predicted as {}'\
-#                     .format(ids[e], labels[e], predicted[e]), file=f)
+def find_errors(predicted, labels, ids, limit=10):
+    with open('Three Meter/errors.txt', 'w') as f:
+        errors = (predicted != labels).nonzero()
+        errors = errors[: min(limit, len(errors))]
+        for error in errors:
+            e = error.item()
+            print('Image {} should have label {} but predicted as {}'\
+                    .format(ids[e], labels[e], predicted[e]), file=f)
 
 
 
-# def test(errors=False):
-#     model.eval()
-#     with torch.no_grad():
-#         correct = 0
-#         total = 0
-#         for images, ids in test_loader:
-#             images = images.to(device)
-#             labels = labels.to(device)
-#             outputs = model(images)
-#             _, predicted = torch.max(outputs.data, 1)
-#             total += labels.size(0)
-#             correct += (predicted == labels).sum().item()
-#             if errors:
-#                 find_errors(predicted, labels, ids)
-#         test_acc = correct/total
-#         return test_acc
+def test(errors=False):
+    model.eval()
+    with torch.no_grad():
+        correct = 0
+        total = 0
+        for images, ids in test_loader:
+            images = images.to(device)
+            labels = labels.to(device)
+            outputs = model(images)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+            if errors:
+                find_errors(predicted, labels, ids)
+        test_acc = correct/total
+        return test_acc
 
 
 def plot_scores(scores, save=True):
     f = plt.figure(1)
-    train_acc = [i for i in scores]
+    train_acc = [i[0] for i in scores]
+    test_acc = [i[1] for i in scores]
     plt.plot(train_acc)
     plt.title('Model loss')
-    plt.ylabel('Loss')
+    plt.ylabel('L1 Loss')
     plt.xlabel('Epochs')
-    plt.legend(['MAE'], loc='upper right')
+    plt.legend(['Train, Test'], loc='upper right')
     plt.show()
     if save:
         f.savefig('Three Meter/scores.png')
@@ -168,6 +177,7 @@ def plot_params(model, save=True):
 
 
 if __name__ == '__main__':
+    save = True
     load = int(sys.argv[1])
     model = AutoEncoder().to(device)
 
@@ -177,25 +187,26 @@ if __name__ == '__main__':
         scores = np.load(scores_path)
 
     else:
-        train_loader = load_data()
+        train_loader, test_loader = load_data()
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
         criterion = nn.L1Loss()
 
         scores = []
         for epoch in range(n_epoch):
             train_acc = train()
-            scores.append(train_acc)
+            test_acc = test()
+            scores.append([train_acc, test_acc])
             if (epoch+1) % 5 == 0 or epoch == n_epoch-1:
-                print('Epoch {} train_acc: {}'.
-                    format(epoch+1, train_acc))
+                print('Epoch {} train_acc: {}, test_acc: {}'.
+                    format(epoch+1, train_acc, test_acc))
 
-        np.save(scores_path, np.array(scores))
+        if save:
+            np.save(scores_path, np.array(scores))
+            torch.save(model.state_dict(), model_path)
 
-        torch.save(model.state_dict(), model_path)
-
-    plot_scores(scores)
-    plot_params(model)
-    # test(errors=True)
+    plot_scores(scores, save)
+    plot_params(model, save)
+    test(errors=save)
 
 
 
