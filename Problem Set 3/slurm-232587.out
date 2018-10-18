@@ -1,9 +1,0 @@
-/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
-Using TensorFlow backend.
-/cliphomes/myuan/anaconda3/lib/python3.6/site-packages/sklearn/utils/validation.py:475: DataConversionWarning: Data with input dtype uint8 was converted to float64 by MinMaxScaler.
-  warnings.warn(msg, DataConversionWarning)
-Epoch 5 train_acc: 0.8452092926454903, test_acc: 0.8422695699680013
-Epoch 10 train_acc: 0.8544707198418273, test_acc: 0.8433101797653425
-Epoch 15 train_acc: 0.8621452170972189, test_acc: 0.8544186893519603
-Epoch 20 train_acc: 0.8694034704336742, test_acc: 0.8602981347069383

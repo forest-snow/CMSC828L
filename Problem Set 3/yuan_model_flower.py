@@ -1,6 +1,6 @@
 import numpy as np
-import matplotlib
-matplotlib.use('agg') 
+# import matplotlib
+# matplotlib.use('agg') 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from sklearn.preprocessing import MinMaxScaler
@@ -11,8 +11,8 @@ import torchvision as tv
 from torch.utils.data import Dataset, DataLoader
 import sys
 
-seed = 7
-np.random.seed(seed)
+# seed = 7
+# np.random.seed(seed)
 
 n_epoch = 100
 n_class = 5
@@ -224,8 +224,9 @@ def plot_params(model, save=True):
 
 
 if __name__ == '__main__':
-    save = True
-    load = int(sys.argv[1])
+    save = False
+    # load = int(sys.argv[1])
+    load = False
     model = CNNet(n_class).to(device)
 
     if load:
@@ -252,7 +253,7 @@ if __name__ == '__main__':
 
     plot_scores(scores, save)
     plot_params(model, save)
-    test(errors=save)
+    # test(errors=save)
 
 
 

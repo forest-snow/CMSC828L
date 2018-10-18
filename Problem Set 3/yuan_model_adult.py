@@ -1,6 +1,6 @@
 import numpy as np
-import matplotlib
-matplotlib.use('agg') 
+# import matplotlib
+# matplotlib.use('agg') 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from sklearn.preprocessing import MinMaxScaler
@@ -11,35 +11,39 @@ import torchvision as tv
 from torch.utils.data import Dataset, DataLoader
 import sys
 
-seed = 7
-np.random.seed(seed)
+# seed = 7
+# np.random.seed(seed)
 
-n_epoch = 200
-batch_size = 500
+n_epoch = 3000
+n_class = 2
+batch_size = 100
 learning_rate = 1e-3
 
-model_path = 'model_meter.pt'
-scores_path = 'scores_meter.npy'
+model_path = 'model_adult.pt'
+scores_path = 'scores_adult.npy'
 
 # CUDA for PyTorch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+
 class CustomData(Dataset):
-    def __init__(self, data, ids):
-        self.data = data
+    def __init__(self, images, labels, ids):
+        self.labels = labels
+        self.images = images
         self.ids = ids
 
     def __len__(self):
-        return len(self.data)
+        return len(self.labels)
 
     def __getitem__(self, index):
-        x = torch.tensor(self.data[index]).float()
+        image = torch.tensor(self.images[index]).float()
+        label = self.labels[index]
         i = self.ids[index]
-
-        return x, i
+        return image, label, i
 
 def load_data(split=0.15):
-    x = np.loadtxt('./Three Meter/data.csv', delimiter=',')
+    x = np.load('./Adult/data.npy')
+    y = np.load('./Adult/labels.npy')
     scaler = MinMaxScaler()
     x = scaler.fit_transform(x)
 
@@ -49,82 +53,96 @@ def load_data(split=0.15):
     train_ind = ind[:-test]
     test_ind = ind[-test:]
     x_train = x[train_ind]
+    y_train = y[train_ind]
     x_test = x[test_ind]
+    y_test = y[test_ind]
 
-    train = CustomData(x_train, train_ind)
-    test = CustomData(x_test, test_ind)
+    train = CustomData(x_train, y_train, train_ind)
+    test = CustomData(x_test, y_test, test_ind)
 
+    # print(train.images.shape)
+    # print(train.labels.shape)
     train_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(dataset=train, 
         batch_size=batch_size, shuffle=False)
+
+
     return train_loader, test_loader
 
-class AutoEncoder(nn.Module):
-    def __init__(self):
-        super(AutoEncoder, self).__init__()
-        self.encoder = nn.Sequential(
-            nn.BatchNorm1d(num_features=33),    
-            nn.Linear(33, 500),
-            nn.ReLU(),
-            nn.Linear(500, 100),
-            nn.ReLU(),
-            nn.Linear(100, 16)
-        )
-        self.decoder = nn.Sequential(
-            nn.BatchNorm1d(num_features=16),
-            nn.Linear(16, 100),
-            nn.ReLU(),
-            nn.Linear(100, 500),
-            nn.ReLU(),
-            nn.Linear(500, 33),
-            nn.Tanh()
+class NeuralNet(nn.Module):
+    def __init__(self, n_class):
+        super(NeuralNet, self).__init__()
+        self.fc1 = nn.Linear(67, 100)
+        self.fc2 = nn.Linear(100, 500)
+        self.fc3 = nn.Linear(500, n_class)
+        self.nn = nn.Sequential(
+            self.fc1, nn.ReLU(), 
+            self.fc2, nn.ReLU(),
+            self.fc3, nn.Tanh(), 
         )
 
     def forward(self, x):
-        x = self.encoder(x)
-        x = self.decoder(x)
-        return x
+        out = self.nn(x)
+        return out
 
 
 
 def train():
     model.train()
-    for i, (data, _) in enumerate(train_loader):
-        data = data.to(device)
+    correct = 0
+    total = 0
+    for i, (images, labels, _) in enumerate(train_loader):
+        images = images.to(device)
+        labels = labels.to(device)
 
-        outputs = model(data)
-        loss = criterion(outputs, data)
+        outputs = model(images)
+        labels = labels.long()
+        loss = criterion(outputs, labels)
 
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
 
-    return loss.item()
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+    train_acc = correct/total
+    return train_acc
 
 
-def find_errors(data, outputs, ids, limit=10):
-    loss = torch.sum((data-outputs).abs(), dim=1)
-    with open('Three Meter/errors.txt', 'w') as f:
-        i = loss.argmax()
-        print('Data {} has loss of {}'\
-            .format(ids[i], loss[i]), file=f)
-        print('Original: {}'.format(data[i]), file=f)
-        print('Recovered: {}'.format(outputs[i]), file=f)
+def find_errors(predicted, labels, ids, limit=10):
+    errors = (predicted != labels).nonzero()
+    errors = errors[: min(limit, len(errors))]
+    if len(errors) > 3:
+        with open('Adult/errors.txt', 'w') as f:
+            for error in errors:
+                e = error.item()
+                print('Image {} should have label {} but predicted as {}'\
+                        .format(ids[e], labels[e], predicted[e]), file=f)
+        return False
+    return True
 
 
 
 def test(errors=False):
     model.eval()
     with torch.no_grad():
-        for i, (data, ids) in enumerate(test_loader):
-            data = data.to(device)
-
-            outputs = model(data)
-            loss = criterion(outputs, data)
+        correct = 0
+        total = 0
+        for images, labels, ids in test_loader:
+            images = images.to(device)
+            labels = labels.to(device)
+            labels = labels.long()
+            outputs = model(images)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
             if errors:
-                find_errors(data, outputs, ids)
-            return loss.item() 
+                errors = find_errors(predicted, labels, ids)
+        test_acc = correct/total
+        return test_acc
 
 
 def plot_scores(scores, save=True):
@@ -133,13 +151,13 @@ def plot_scores(scores, save=True):
     test_acc = [i[1] for i in scores]
     plt.plot(train_acc)
     plt.plot(test_acc)
-    plt.title('Model loss')
-    plt.ylabel('L1 Loss')
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
     plt.xlabel('Epochs')
-    plt.legend(['Train', 'Test'], loc='upper right')
+    plt.legend(['Train', 'Test'], loc='upper left')
     plt.show()
     if save:
-        f.savefig('Three Meter/scores.png')
+        f.savefig('Adult/scores.png')
 
 def plot_params(model, save=True):
     f = plt.figure(2)
@@ -164,26 +182,27 @@ def plot_params(model, save=True):
         Line2D([0], [0], marker='o', color='y', label='Minimum'),
         Line2D([0], [0], marker='o', color='m', label='Mean')]
     plt.legend(handles=elements, loc='upper left')
-    plt.ylim(-3,3)
+    plt.ylim(-5,15)
     plt.show()
     if save:
-        f.savefig('Three Meter/wb.png')
+        f.savefig('Adult/wb.png')
 
 
 if __name__ == '__main__':
-    save = True
-    load = int(sys.argv[1])
-    model = AutoEncoder().to(device)
+    save = False
+    # load = int(sys.argv[1])
+    load = False
+    model = NeuralNet(n_class).to(device)
+
+    train_loader, test_loader = load_data()
 
     if load:
-        print('loading')
         model.load_state_dict(torch.load(model_path, map_location='cpu'))
         scores = np.load(scores_path)
 
     else:
-        train_loader, test_loader = load_data()
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-        criterion = nn.L1Loss()
+        criterion = nn.CrossEntropyLoss()
 
         scores = []
         for epoch in range(n_epoch):
@@ -200,7 +219,7 @@ if __name__ == '__main__':
 
     plot_scores(scores, save)
     plot_params(model, save)
-    test(errors=save)
+    # test(errors=save)
 
 
 
